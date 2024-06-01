@@ -102,22 +102,6 @@ df_valores = df_valores.rename(columns=traducao)
 df_valores['Data'] = df_valores['Data'].dt.strftime('%d-%m-%Y')
 st.write(df_valores.tail(40))
 
-# Criando gráfico de preços
-st.subheader('Gráfico de Preços')
-fig = go.Figure()
-
-fig.add_trace(go.Scatter(x=df_valores['Data'],
-                         y=df_valores['Fechamento'],
-                         name='Preço Fechamento',
-                         line_color='yellow'))
-
-fig.add_trace(go.Scatter(x=df_valores['Data'],
-                         y=df_valores['Abertura'],
-                         name='Preço Abertura',
-                         line_color='blue'))
-
-config = configurar_grafico(fig)
-st.plotly_chart(fig, use_container_width=False, config=config)
 
 # Coletando os dados fundamentais
 ticker_data = yf.Ticker(sigla_acao_escolhida)
