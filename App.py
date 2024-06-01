@@ -10,7 +10,9 @@ st.set_page_config(layout="wide")
 
 # Função para formatar a data
 def formatar_data(data):
-    return data.strftime('%d-%m-%Y')
+    if data is not None:
+        return pd.to_datetime(data, unit='s').strftime('%d-%m-%Y')
+    return 'N/A'
 
 # Dicionário de tradução de nomes das colunas
 traducao = {
@@ -104,7 +106,6 @@ df_valores['Data'] = df_valores['Data'].dt.strftime('%d-%m-%Y')
 st.write(df_valores.tail(40))
 
 
-
 # Coletando os dados fundamentais
 ticker_data = yf.Ticker(sigla_acao_escolhida)
 
@@ -113,7 +114,7 @@ st.subheader('Informações Gerais')
 st.write(f"**Papel:** {sigla_acao_escolhida}")
 st.write(f"**Cotação:** {ticker_data.info.get('currentPrice', 'N/A')}")
 st.write(f"**Tipo:** {ticker_data.info.get('quoteType', 'N/A')}")
-st.write(f"**Data da última cotação:** {formatar_data(ticker_data.info.get('regularMarketTime', 'N/A')) if 'regularMarketTime' in ticker_data.info else 'N/A'}")
+st.write(f"**Data da última cotação:** {formatar_data(ticker_data.info.get('regularMarketTime', None))}")
 st.write(f"**Empresa:** {ticker_data.info.get('longName', 'N/A')}")
 st.write(f"**Setor:** {ticker_data.info.get('sector', 'N/A')}")
 st.write(f"**Subsetor:** {ticker_data.info.get('industry', 'N/A')}")
@@ -135,18 +136,27 @@ for indicador, valor in indicadores.items():
 
 # Exibindo dados do Balanço Patrimonial
 st.subheader('Dados do Balanço Patrimonial')
-st.write(f"**Ativo:** {ticker_data.balance_sheet.iloc[0].sum()}")
-st.write(f"**Disponibilidades:** {ticker_data.balance_sheet.iloc[0].get('Cash And Cash Equivalents', 'N/A')}")
-st.write(f"**Ativo Circulante:** {ticker_data.balance_sheet.iloc[0].get('Total Current Assets', 'N/A')}")
-st.write(f"**Dívida Bruta:** {ticker_data.balance_sheet.iloc[0].get('Total Debt', 'N/A')}")
-st.write(f"**Dívida Líquida:** {ticker_data.balance_sheet.iloc[0].get('Net Debt', 'N/A')}")
-st.write(f"**Patrimônio Líquido:** {ticker_data.balance_sheet.iloc[0].get('Total Equity', 'N/A')}")
+balance_sheet = ticker_data.balance_sheet
+if not balance_sheet.empty:
+    st.write(f"**Ativo:** {balance_sheet.iloc[0].sum()}")
+    st.write(f"**Disponibilidades:** {balance_sheet.get('Cash And Cash Equivalents', 'N/A')}")
+    st.write(f"**Ativo Circulante:** {balance_sheet.get('Total Current Assets', 'N/A')}")
+    st.write(f"**Dívida Bruta:** {balance_sheet.get('Total Debt', 'N/A')}")
+    st.write(f"**Dívida Líquida:** {balance_sheet.get('Net Debt', 'N/A')}")
+    st.write(f"**Patrimônio Líquido:** {balance_sheet.get('Total Equity', 'N/A')}")
+else:
+    st.write('Dados do balanço patrimonial não disponíveis.')
 
 # Exibindo dados dos Demonstrativos de Resultados
 st.subheader('Dados dos Demonstrativos de Resultados')
-st.write(f"**Receita Líquida:** {ticker_data.financials.iloc[0].get('Total Revenue', 'N/A')}")
-st.write(f"**EBIT:** {ticker_data.financials.iloc[0].get('Ebit', 'N/A')}")
-st.write(f"**Lucro Líquido:** {ticker_data.financials.iloc[0].get('Net Income', 'N/A')}")
+financials = ticker_data.financials
+if not financials.empty:
+    st.write(f"**Receita Líquida:** {financials.get('Total Revenue', 'N/A')}")
+    st.write(f"**EBIT:** {financials.get('Ebit', 'N/A')}")
+    st.write(f"**Lucro Líquido:** {financials.get('Net Income', 'N/A')}")
+else:
+    st.write('Dados dos demonstrativos de resultados não disponíveis.')
+
 
 
 
