@@ -3,6 +3,7 @@ import pandas as pd
 import yfinance as yf
 from PIL import Image
 from datetime import date
+import plotly.graph_objs as go
 
 # Configurando a largura da página
 st.set_page_config(layout="wide")
@@ -37,16 +38,16 @@ def pegar_valores_online(sigla_acao):
 def calcular_indicadores(ticker_data):
     indicadores = {}
     try:
-        indicadores['P/L'] = ticker_data.info['forwardPE']
-        indicadores['LPA'] = ticker_data.info['trailingEps']
-        indicadores['P/VP'] = ticker_data.info['priceToBook']
-        indicadores['VPA'] = ticker_data.info['bookValue']
-        indicadores['P/EBIT'] = ticker_data.info['enterpriseToEbitda']
-        indicadores['Margem Bruta'] = ticker_data.info['grossMargins']
-        indicadores['Margem EBIT'] = ticker_data.info['ebitdaMargins']
-        indicadores['Margem Líquida'] = ticker_data.info['profitMargins']
-        indicadores['ROIC'] = ticker_data.info['returnOnAssets']
-        indicadores['ROE'] = ticker_data.info['returnOnEquity']
+        indicadores['P/L'] = ticker_data.info.get('forwardPE', 'N/A')
+        indicadores['LPA'] = ticker_data.info.get('trailingEps', 'N/A')
+        indicadores['P/VP'] = ticker_data.info.get('priceToBook', 'N/A')
+        indicadores['VPA'] = ticker_data.info.get('bookValue', 'N/A')
+        indicadores['P/EBIT'] = ticker_data.info.get('enterpriseToEbitda', 'N/A')
+        indicadores['Margem Bruta'] = ticker_data.info.get('grossMargins', 'N/A')
+        indicadores['Margem EBIT'] = ticker_data.info.get('ebitdaMargins', 'N/A')
+        indicadores['Margem Líquida'] = ticker_data.info.get('profitMargins', 'N/A')
+        indicadores['ROIC'] = ticker_data.info.get('returnOnAssets', 'N/A')
+        indicadores['ROE'] = ticker_data.info.get('returnOnEquity', 'N/A')
     except Exception as e:
         st.error(f"Erro ao calcular os indicadores fundamentalistas: {e}")
     return indicadores
@@ -103,27 +104,28 @@ df_valores['Data'] = df_valores['Data'].dt.strftime('%d-%m-%Y')
 st.write(df_valores.tail(40))
 
 
+
 # Coletando os dados fundamentais
 ticker_data = yf.Ticker(sigla_acao_escolhida)
 
 # Exibindo informações gerais sobre a empresa
 st.subheader('Informações Gerais')
 st.write(f"**Papel:** {sigla_acao_escolhida}")
-st.write(f"**Cotação:** {ticker_data.info['currentPrice']}")
-st.write(f"**Tipo:** {ticker_data.info['quoteType']}")
-st.write(f"**Data da última cotação:** {formatar_data(ticker_data.info['regularMarketTime'])}")
-st.write(f"**Empresa:** {ticker_data.info['longName']}")
-st.write(f"**Setor:** {ticker_data.info['sector']}")
-st.write(f"**Subsetor:** {ticker_data.info['industry']}")
-st.write(f"**Valor de mercado:** {ticker_data.info['marketCap']}")
-st.write(f"**Valor da firma:** {ticker_data.info['enterpriseValue']}")
-st.write(f"**Número de Ações:** {ticker_data.info['sharesOutstanding']}")
+st.write(f"**Cotação:** {ticker_data.info.get('currentPrice', 'N/A')}")
+st.write(f"**Tipo:** {ticker_data.info.get('quoteType', 'N/A')}")
+st.write(f"**Data da última cotação:** {formatar_data(ticker_data.info.get('regularMarketTime', 'N/A')) if 'regularMarketTime' in ticker_data.info else 'N/A'}")
+st.write(f"**Empresa:** {ticker_data.info.get('longName', 'N/A')}")
+st.write(f"**Setor:** {ticker_data.info.get('sector', 'N/A')}")
+st.write(f"**Subsetor:** {ticker_data.info.get('industry', 'N/A')}")
+st.write(f"**Valor de mercado:** {ticker_data.info.get('marketCap', 'N/A')}")
+st.write(f"**Valor da firma:** {ticker_data.info.get('enterpriseValue', 'N/A')}")
+st.write(f"**Número de Ações:** {ticker_data.info.get('sharesOutstanding', 'N/A')}")
 
 # Exibindo as oscilações
 st.subheader('Oscilações')
-st.write(f"**Oscilação 1 mês:** {ticker_data.info['52WeekChange']}")
-st.write(f"**Oscilação 6 meses:** {ticker_data.info['beta']}")
-st.write(f"**Oscilação 1 ano:** {ticker_data.info['52WeekHigh']}")
+st.write(f"**Oscilação 1 mês:** {ticker_data.info.get('52WeekChange', 'N/A')}")
+st.write(f"**Oscilação 6 meses:** {ticker_data.info.get('beta', 'N/A')}")
+st.write(f"**Oscilação 1 ano:** {ticker_data.info.get('52WeekHigh', 'N/A')}")
 
 # Calculando e exibindo os indicadores fundamentalistas
 st.subheader('Indicadores Fundamentalistas')
@@ -134,17 +136,17 @@ for indicador, valor in indicadores.items():
 # Exibindo dados do Balanço Patrimonial
 st.subheader('Dados do Balanço Patrimonial')
 st.write(f"**Ativo:** {ticker_data.balance_sheet.iloc[0].sum()}")
-st.write(f"**Disponibilidades:** {ticker_data.balance_sheet.iloc[0]['Cash And Cash Equivalents']}")
-st.write(f"**Ativo Circulante:** {ticker_data.balance_sheet.iloc[0]['Total Current Assets']}")
-st.write(f"**Dívida Bruta:** {ticker_data.balance_sheet.iloc[0]['Total Debt']}")
-st.write(f"**Dívida Líquida:** {ticker_data.balance_sheet.iloc[0]['Net Debt']}")
-st.write(f"**Patrimônio Líquido:** {ticker_data.balance_sheet.iloc[0]['Total Equity']}")
+st.write(f"**Disponibilidades:** {ticker_data.balance_sheet.iloc[0].get('Cash And Cash Equivalents', 'N/A')}")
+st.write(f"**Ativo Circulante:** {ticker_data.balance_sheet.iloc[0].get('Total Current Assets', 'N/A')}")
+st.write(f"**Dívida Bruta:** {ticker_data.balance_sheet.iloc[0].get('Total Debt', 'N/A')}")
+st.write(f"**Dívida Líquida:** {ticker_data.balance_sheet.iloc[0].get('Net Debt', 'N/A')}")
+st.write(f"**Patrimônio Líquido:** {ticker_data.balance_sheet.iloc[0].get('Total Equity', 'N/A')}")
 
 # Exibindo dados dos Demonstrativos de Resultados
 st.subheader('Dados dos Demonstrativos de Resultados')
-st.write(f"**Receita Líquida:** {ticker_data.financials.iloc[0]['Total Revenue']}")
-st.write(f"**EBIT:** {ticker_data.financials.iloc[0]['Ebit']}")
-st.write(f"**Lucro Líquido:** {ticker_data.financials.iloc[0]['Net Income']}")
+st.write(f"**Receita Líquida:** {ticker_data.financials.iloc[0].get('Total Revenue', 'N/A')}")
+st.write(f"**EBIT:** {ticker_data.financials.iloc[0].get('Ebit', 'N/A')}")
+st.write(f"**Lucro Líquido:** {ticker_data.financials.iloc[0].get('Net Income', 'N/A')}")
 
 
 
