@@ -3,7 +3,6 @@ import pandas as pd
 import yfinance as yf
 from PIL import Image
 from datetime import date
-import plotly.graph_objs as go
 
 # Configurando a largura da página
 st.set_page_config(layout="wide")
@@ -13,17 +12,6 @@ def formatar_data(data):
     if data is not None:
         return pd.to_datetime(data, unit='s').strftime('%d-%m-%Y')
     return 'N/A'
-
-# Dicionário de tradução de nomes das colunas
-traducao = {
-    'Date': 'Data',
-    'Open': 'Abertura',
-    'High': 'Alta',
-    'Low': 'Baixa',
-    'Close': 'Fechamento',
-    'Adj Close': 'Fechamento Ajustado',
-    'Volume': 'Volume'
-}
 
 # Função para pegar os dados das ações
 def pegar_dados_acoes():
@@ -54,16 +42,6 @@ def calcular_indicadores(ticker_data):
         st.error(f"Erro ao calcular os indicadores fundamentalistas: {e}")
     return indicadores
 
-# Função para exibir dados com tratamento de exceção
-def exibir_dados(label, func):
-    try:
-        dados = func()
-        if dados is not None and not dados.empty:
-            st.write(f"**{label}:**")
-            st.write(dados)
-    except Exception as e:
-        st.warning(f"{label} não disponível: {e}")
-
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
@@ -82,7 +60,6 @@ st.title('Análise de ações')
 
 # Criando a sidebar
 st.sidebar.markdown('Escolha a ação')
-n_dias = st.sidebar.slider('Quantidade de dias de previsão', 30, 365)
 
 # Pegando os dados das ações
 df = pegar_dados_acoes()
@@ -92,19 +69,6 @@ nome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação:', acao)
 df_acao = df[df['snome'] == nome_acao_escolhida]
 sigla_acao_escolhida = df_acao.iloc[0]['sigla_acao']
 sigla_acao_escolhida += '.SA'
-
-# Pegando os valores online
-df_valores = pegar_valores_online(sigla_acao_escolhida)
-
-st.subheader('Tabela de Valores - ' + nome_acao_escolhida)
-
-# Renomeando as colunas usando o dicionário de tradução
-df_valores = df_valores.rename(columns=traducao)
-
-# Convertendo a coluna "Data" para o formato desejado
-df_valores['Data'] = df_valores['Data'].dt.strftime('%d-%m-%Y')
-st.write(df_valores.tail(40))
-
 
 # Coletando os dados fundamentais
 ticker_data = yf.Ticker(sigla_acao_escolhida)
@@ -156,6 +120,7 @@ if not financials.empty:
     st.write(f"**Lucro Líquido:** {financials.get('Net Income', 'N/A')}")
 else:
     st.write('Dados dos demonstrativos de resultados não disponíveis.')
+
 
 
 
