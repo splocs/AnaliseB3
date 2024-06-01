@@ -97,6 +97,7 @@ def classificar_indicador(valor, tipo):
                 return 'ruim', 'red'
     except ValueError:
         return 'N/A', 'gray'
+    return 'N/A', 'gray'
 
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
@@ -176,8 +177,8 @@ st.subheader('Dados do Balanço Patrimonial')
 balance_sheet = ticker_data.balance_sheet
 if not balance_sheet.empty:
     st.write(f"**Ativo:** {balance_sheet.iloc[0].sum()}")
-    st.write(f"**Disponibilidades:** {balance_sheet.get('Cash And Cash Equivalents', 'N/A')}")
-    st.write(f"**Ativo Circulante:** {balance_sheet.get('Total Current Assets', 'N/A')}")
+    st.write(f"**Disponibilidades:** {balance_sheet.get('Cash', 'N/A')}")
+    st.write(f"**Ativo Circulante:** {balance_sheet.get('Current Assets', 'N/A')}")
     st.write(f"**Dívida Bruta:** {balance_sheet.get('Total Debt', 'N/A')}")
     st.write(f"**Dívida Líquida:** {balance_sheet.get('Net Debt', 'N/A')}")
     st.write(f"**Patrimônio Líquido:** {balance_sheet.get('Total Equity', 'N/A')}")
