@@ -196,6 +196,29 @@ else:
     st.write('Dados dos demonstrativos de resultados não disponíveis.')
 
 
+# Exibindo dados do Balanço Patrimonial teste
+st.subheader('Dados do Balanço Patrimonial')
+balance_sheet = ticker_data.balance_sheet
+if not balance_sheet.empty:
+    st.write(f"**Disponibilidades:** {balance_sheet.get('Cash', 'N/A')}")
+    st.write(f"**Ativo Circulante:** {balance_sheet.get('Total Current Assets', 'N/A')}")
+    st.write(f"**Dívida Bruta:** {balance_sheet.get('Total Debt', 'N/A')}")
+    st.write(f"**Dívida Líquida:** {balance_sheet.get('Net Debt', 'N/A')}")
+    st.write(f"**Patrimônio Líquido:** {balance_sheet.get('Total Stockholder Equity', 'N/A')}")
+else:
+    st.write('Dados do balanço patrimonial não disponíveis.')
+
+# Exibindo dados dos Demonstrativos de Resultados
+st.subheader('Dados dos Demonstrativos de Resultados')
+financials = ticker_data.financials
+if not financials.empty:
+    st.write(f"**Receita Líquida:** {financials.get('Total Revenue', 'N/A')}")
+    st.write(f"**EBIT:** {financials.get('EBIT', 'N/A')}")
+    st.write(f"**Lucro Líquido:** {financials.get('Net Income', 'N/A')}")
+else:
+    st.write('Dados dos demonstrativos de resultados não disponíveis.')
+
+
 
 
 
