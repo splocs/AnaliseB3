@@ -44,7 +44,7 @@ def exibir_info_empresa(info):
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
- # Exibição dos diretores dentro de um expander
+  # Exibição dos diretores dentro de um expander sem borda
     with st.expander("Diretores da Empresa", expanded=False):
         directors = info.get('companyOfficers', [])
         if directors:
@@ -53,7 +53,8 @@ def exibir_info_empresa(info):
                 st.write(f"  **Cargo:** {director.get('title', 'N/A')}")
                 st.write(f"  **Idade:** {director.get('age', 'N/A')}")
                 st.write(f"  **Ano de Nascimento:** {director.get('yearBorn', 'N/A')}")
-              
+                st.write(f"  **Exercised Value:** {director.get('exercisedValue', 'N/A')}")
+                st.write(f"  **Unexercised Value:** {director.get('unexercisedValue', 'N/A')}")
         else:
             st.write("Nenhum diretor encontrado.")
 
