@@ -45,7 +45,7 @@ def exibir_info_empresa(info):
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
  # Exibição dos diretores dentro de um expander
-    with st.expander("Diretores da Empresa"):
+    with st.expander("Diretores da Empresa", expanded=False):
         directors = info.get('companyOfficers', [])
         if directors:
             for director in directors:
