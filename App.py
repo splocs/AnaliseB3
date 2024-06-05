@@ -44,7 +44,7 @@ def exibir_info_empresa(info):
     st.write(f"**Telefone:** {info.get('phone', 'N/A')}")
     st.write(f"**Site:** {info.get('website', 'N/A')}")
 
-    def obter_site_ri(info):
+ 
     site_empresa = info.get('website', 'N/A')
     if site_empresa != 'N/A':
         # Separar o domínio do site
