@@ -44,8 +44,7 @@ def exibir_info_empresa(info):
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
-    st.write(f"**Diretores da Empresa:** {info.get('companyOfficers', 'N/A')}")
-    # Exibição dos diretores
+      # Exibição dos diretores
     directors = info.get('companyOfficers', [])
     if directors:
         st.write("**Diretores da Empresa:**")
