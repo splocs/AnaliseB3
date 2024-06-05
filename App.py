@@ -4,6 +4,19 @@ import yfinance as yf
 from PIL import Image
 from datetime import date
 
+# Função para carregar dados usando yfinance e filtrar N/A
+def carregar_dados(ticker):
+    # Carrega os dados do Yahoo Finance
+    data = yf.download(ticker)
+    
+    # Faz uma varredura para identificar valores ausentes
+    na_mask = data.isna().any(axis=1)
+    
+    # Filtra os dados para excluir as linhas com valores ausentes
+    data_filtered = data[~na_mask]
+    
+    return data_filtered
+
 # Configurando a largura da página
 st.set_page_config(layout="wide")
 
