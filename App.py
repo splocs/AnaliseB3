@@ -54,9 +54,6 @@ def exibir_info_empresa(info):
             st.write(f"  **Cargo:** {director.get('title', 'N/A')}")
             st.write(f"  **Idade:** {director.get('age', 'N/A')}")
             st.write(f"  **Ano de Nascimento:** {director.get('yearBorn', 'N/A')}")
-            st.write(f"  **Exercised Value:** {director.get('exercisedValue', 'N/A')}")
-            st.write(f"  **Unexercised Value:** {director.get('unexercisedValue', 'N/A')}")
-            st.write("")  # Adiciona uma linha em branco entre cada diretor
     else:
         st.write("Nenhum diretor encontrado.")
 
