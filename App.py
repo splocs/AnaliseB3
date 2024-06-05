@@ -57,8 +57,8 @@ def exibir_info_empresa(info):
                 st.write(f"  **Ano de Nascimento:** {director.get('yearBorn', 'N/A')}")
         else:
             st.write("Nenhum diretor encontrado.")
-    st.markdown("# !analise de risco")   
-    st.write(f"**Capitalização de mercado:** {info.get('auditRisk', 'N/A')}")
+    st.markdown("## Analise de Risco")   
+    st.write(f"**Risco:** {info.get('overallRisk', 'N/A')}")
 
     
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
