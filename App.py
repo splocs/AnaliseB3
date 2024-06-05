@@ -44,8 +44,17 @@ def exibir_info_empresa(info):
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
-  # Exibição dos diretores dentro de um expander sem borda
-    with st.expander("Diretores da Empresa", expanded=False):
+# Exibição dos diretores dentro de um expander sem borda
+    with st.expander("Diretores da Empresa", expanded=False), st.markdown(
+        """
+        <style>
+            .st-bd {
+                border: none;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    ):
         directors = info.get('companyOfficers', [])
         if directors:
             for director in directors:
