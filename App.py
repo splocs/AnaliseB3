@@ -45,6 +45,20 @@ def exibir_info_empresa(info):
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
     st.write(f"**Diretores da Empresa:** {info.get('companyOfficers', 'N/A')}")
+    # Exibição dos diretores
+    directors = info.get('companyOfficers', [])
+    if directors:
+        st.write("**Diretores da Empresa:**")
+        for director in directors:
+            st.write(f"- **Nome:** {director.get('name', 'N/A')}")
+            st.write(f"  **Cargo:** {director.get('title', 'N/A')}")
+            st.write(f"  **Idade:** {director.get('age', 'N/A')}")
+            st.write(f"  **Ano de Nascimento:** {director.get('yearBorn', 'N/A')}")
+            st.write(f"  **Exercised Value:** {director.get('exercisedValue', 'N/A')}")
+            st.write(f"  **Unexercised Value:** {director.get('unexercisedValue', 'N/A')}")
+            st.write("")  # Adiciona uma linha em branco entre cada diretor
+    else:
+        st.write("Nenhum diretor encontrado.")
 
     
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
