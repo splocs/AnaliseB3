@@ -32,15 +32,20 @@ def pegar_info_empresa(sigla_acao):
 
 # Função para exibir informações da empresa
 def exibir_info_empresa(info):
+    st.write("Informações da Comphania?")
     st.write(f"**Nome:** {info.get('longName', 'N/A')}")
     st.write(f"**Endereço:** {info.get('address1', 'N/A')}")
-    st.write(f"**Setor:** {info.get('sector', 'N/A')}")
-    st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
-    st.write(f"**Website:** {info.get('website', 'N/A')}")
-    st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
     st.write(f"**Cidade:** {info.get('city', 'N/A')}")
     st.write(f"**Estado:** {info.get('state', 'N/A')}")
     st.write(f"**País:** {info.get('country', 'N/A')}")
+    st.write(f"**CEP:** {info.get('zip', 'N/A')}")
+    st.write(f"**Telefone:** {info.get('phone', 'N/A')}")
+    st.write(f"**Website:** {info.get('website', 'N/A')}")
+    
+    st.write(f"**Setor:** {info.get('sector', 'N/A')}")
+    st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
+    st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
+    
     st.write(f"**Número de funcionários:** {info.get('fullTimeEmployees', 'N/A')}")
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
     st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
