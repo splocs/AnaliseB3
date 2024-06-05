@@ -43,19 +43,10 @@ def exibir_info_empresa(info):
     st.write(f"**CEP:** {info.get('zip', 'N/A')}")
     st.write(f"**Telefone:** {info.get('phone', 'N/A')}")
     st.write(f"**Site:** {info.get('website', 'N/A')}")
-
+    st.write(f"**RISite:** {info.get('ri.website', 'N/A')}")
  
-    site_empresa = info.get('website', 'N/A')
-    if site_empresa != 'N/A':
-        # Separar o domínio do site
-        partes_site = site_empresa.split('.')
-        # Inserir "ri." antes do domínio
-        novo_site = '.'.join(partes_site[:-1])  # Pegar tudo exceto o último elemento (domínio)
-        novo_site = 'ri.' + novo_site + '.' + partes_site[-1]  # Inserir "ri." antes do domínio e unir novamente
-        return novo_site
-    return 'N/A'
+  
 
-st.write(f"**Site RI:** {obter_site_ri(info)}")
     
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
