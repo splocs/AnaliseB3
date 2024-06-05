@@ -44,17 +44,18 @@ def exibir_info_empresa(info):
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
-      # Exibição dos diretores
-    directors = info.get('companyOfficers', [])
-    if directors:
-        st.write("**Diretores da Empresa:**")
-        for director in directors:
-            st.write(f"- **Nome:** {director.get('name', 'N/A')}")
-            st.write(f"  **Cargo:** {director.get('title', 'N/A')}")
-            st.write(f"  **Idade:** {director.get('age', 'N/A')}")
-            st.write(f"  **Ano de Nascimento:** {director.get('yearBorn', 'N/A')}")
-    else:
-        st.write("Nenhum diretor encontrado.")
+ # Exibição dos diretores dentro de um expander
+    with st.expander("Diretores da Empresa"):
+        directors = info.get('companyOfficers', [])
+        if directors:
+            for director in directors:
+                st.write(f"- **Nome:** {director.get('name', 'N/A')}")
+                st.write(f"  **Cargo:** {director.get('title', 'N/A')}")
+                st.write(f"  **Idade:** {director.get('age', 'N/A')}")
+                st.write(f"  **Ano de Nascimento:** {director.get('yearBorn', 'N/A')}")
+              
+        else:
+            st.write("Nenhum diretor encontrado.")
 
     
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
