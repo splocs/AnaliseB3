@@ -53,12 +53,9 @@ def exibir_info_empresa(info):
                 st.write(f"  **Cargo:** {director.get('title', 'N/A')}")
                 st.write(f"  **Idade:** {director.get('age', 'N/A')}")
                 st.write(f"  **Ano de Nascimento:** {director.get('yearBorn', 'N/A')}")
-                st.write(f"  **Exercised Value:** {director.get('exercisedValue', 'N/A')}")
-                st.write(f"  **Unexercised Value:** {director.get('unexercisedValue', 'N/A')}")
         else:
             st.write("Nenhum diretor encontrado.")
-
-    
+            
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
     st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
     st.write(f"**Alta/baixa de 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')} / {info.get('fiftyTwoWeekLow', 'N/A')}")
