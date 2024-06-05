@@ -9,8 +9,6 @@ from datetime import date
 # Configurando a largura da página
 st.set_page_config(layout="wide")
 
-# Definindo a explicação sobre capitalização de mercado
-explicacao_capitalizacao = "A capitalização de mercado é o valor total de mercado de todas as ações em circulação de uma empresa. É calculada multiplicando o preço da ação pelo número total de ações em circulação."
 
 # Função para formatar a data
 def formatar_data(data):
@@ -63,10 +61,7 @@ def exibir_info_empresa(info):
             st.write("Nenhum diretor encontrado.")
     st.markdown("## Analise de Risco")   
     st.write(f"**Risco Geral:** {info.get('overallRisk', 'N/A')}")
-    # Exibindo a capitalização de mercado com a explicação
-st.write("Capitalização de mercado:")
-st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
-st.tooltip(explicacao_capitalizacao)
+     
 
     st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
     st.write(f"**Alta/baixa de 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')} / {info.get('fiftyTwoWeekLow', 'N/A')}")
