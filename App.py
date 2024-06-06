@@ -3,7 +3,6 @@ import pandas as pd
 import yfinance as yf
 from PIL import Image
 from datetime import date
-import matplotlib.pyplot as plt
 
 # Configurando a largura da página
 st.set_page_config(
@@ -112,23 +111,6 @@ def exibir_info_empresa(info, dividendos):
     with st.expander("Histórico de Dividendos", expanded=False):
         if not dividendos.empty:
             st.dataframe(dividendos)
-            
-            # Criando o gráfico de linhas azul com o histórico de dividendos
-            fig, ax = plt.subplots()
-            ax.plot(dividendos.index, dividendos.values, color='blue', marker='o', linestyle='-', linewidth=0.3)
-            ax.set_title('Histórico de Dividendos', fontsize=1)  # Ajuste o tamanho do título conforme necessário
-            ax.xaxis.set_tick_params(labelsize=2)  # Ajuste o tamanho do texto no eixo x conforme necessário
-            ax.yaxis.set_tick_params(labelsize=2)
-            ax.set_title('Histórico de Dividendos', fontsize=1)
-            ax.grid(True)
-            fig.patch.set_facecolor('gold') 
-
-             # Ajustando o tamanho da figura
-            fig.set_size_inches(1, 1)  # Escolha os tamanhos que preferir
-
-
-            # Exibindo o gráfico no Streamlit
-            st.pyplot(fig)
         else:
             st.write("Nenhum dividendo encontrado.")
 
