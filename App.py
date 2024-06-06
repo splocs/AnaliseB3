@@ -107,12 +107,7 @@ def exibir_info_empresa(info):
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
     st.write(f"**Índice de pagamento:** {info.get('df.dividends', 'N/A')}")
 
-       # Exibindo o DataFrame de dividendos
-    st.markdown("#### Histórico de Dividendos")
-    if not dividendos.empty:
-        st.dataframe(dividendos)
-    else:
-        st.write("Nenhum dividendo encontrado.")
+    
 
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
