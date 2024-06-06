@@ -4,11 +4,7 @@ import yfinance as yf
 from PIL import Image
 from datetime import date
 
-
-
-
 # Configurando a largura da página
-
 st.set_page_config(
     page_title="Plotos.com.br",
     page_icon="FAV.png",
@@ -21,21 +17,11 @@ st.set_page_config(
     }
 )
 
-
-
 # Função para formatar a data
 def formatar_data(data):
     if data is not None:
         return pd.to_datetime(data, unit='s').strftime('%d-%m-%Y')
     return 'N/A'
-
-    # Função para traduzir texto
-def traduzir_texto(texto, destino='pt'):
-    translator = Translator()
-    traducao = translator.translate(texto, dest=destino)
-    return traducao.text
-
-   
 
 # Função para pegar os dados das ações
 def pegar_dados_acoes():
@@ -52,11 +38,10 @@ def pegar_valores_online(sigla_acao):
 def pegar_info_empresa(sigla_acao):
     ticker = yf.Ticker(sigla_acao)
     info = ticker.info
-    return info
+    return info, ticker
 
 # Função para exibir informações da empresa
 def exibir_info_empresa(info):
-    
     st.write(f"{info.get('shortName', 'N/A')}") 
     st.write(f"**Nome completo:** {info.get('longName', 'N/A')}")
     st.write(f"**Endereço:** {info.get('address1', 'N/A')}")
@@ -71,7 +56,7 @@ def exibir_info_empresa(info):
     st.write(f"Moeda financeira: {info.get('financialCurrency', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
     
-  # Exibição dos diretores dentro de um expander sem borda
+    # Exibição dos diretores dentro de um expander sem borda
     with st.expander("Diretores da Empresa", expanded=False):
         directors = info.get('companyOfficers', [])
         if directors:
@@ -122,22 +107,12 @@ def exibir_info_empresa(info):
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
     st.write(f"**Índice de pagamento:** {info.get('df.dividends', 'N/A')}")
 
-
-
-
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
-   
-   
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
-   
-    
-   
-
     st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
     st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
-    
     st.write(f"**Valor contábil:** {info.get('bookValue', 'N/A')}")
     st.write(f"**Preço/Valor contábil:** {info.get('priceToBook', 'N/A')}")
     st.write(f"**Fim do último ano fiscal:** {info.get('lastFiscalYearEnd', 'N/A')}")
@@ -157,8 +132,6 @@ def exibir_info_empresa(info):
     st.write(f"**Data do último dividendo:** {info.get('lastDividendDate', 'N/A')}")
     st.write(f"**Tipo de cotação:** {info.get('quoteType', 'N/A')}")
     st.write(f"**Data da primeira negociação (UTC):** {info.get('firstTradeDateEpochUtc', 'N/A')}")
-        
-    
     st.write(f"Total de dinheiro: {info.get('totalCash', 'N/A')}")
     st.write(f"Total de dinheiro por ação: {info.get('totalCashPerShare', 'N/A')}")
     st.write(f"EBITDA: {info.get('ebitda', 'N/A')}")
@@ -178,8 +151,6 @@ def exibir_info_empresa(info):
     st.write(f"Margens EBITDA: {info.get('ebitdaMargins', 'N/A')}")
     st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
     
- 
-
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
@@ -207,8 +178,17 @@ sigla_acao_escolhida = df_acao.iloc[0]['sigla_acao']
 sigla_acao_escolhida += '.SA'
 
 # Pegar e exibir as informações da empresa
-info_acao = pegar_info_empresa(sigla_acao_escolhida)
+info_acao, ticker = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
 exibir_info_empresa(info_acao)
+
+# Pegar e exibir o histórico de dividendos
+st.markdown("#### Histórico de Dividendos")
+dividendos = ticker.dividends
+if not dividendos.empty:
+    st.dataframe(dividendos)
+else:
+    st.write("Nenhum dividendo encontrado.")
+
 
 
