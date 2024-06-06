@@ -84,6 +84,7 @@ def exibir_info_empresa(info):
             st.write("Nenhum diretor encontrado.")
 
     st.markdown("#### Preço")  
+    st.write(f"**Preço Fechamento Anterior:** {info.get('last_quote_date', 'N/A')}")
     st.write(f"**Preço Fechamento Anterior:** {info.get('previousClose', 'N/A')}")
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Preço de Compra Atual(Bid):** {info.get('bid', 'N/A')}")
