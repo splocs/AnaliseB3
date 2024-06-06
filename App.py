@@ -106,4 +106,4 @@ sigla_acao_escolhida += '.SA'
 # Pegar e exibir as informações da empresa
 info_acao = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
-exibir_info_empresa(info_acao)"
+exibir_info_empresa(info_acao)
