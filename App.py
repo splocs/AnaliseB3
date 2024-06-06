@@ -10,6 +10,8 @@ from datetime import date
 # Configurando a largura da página
 st.set_page_config(layout="wide")
 
+# Define o tema escuro
+st.set_theme("dark")
 
 # Função para formatar a data
 def formatar_data(data):
