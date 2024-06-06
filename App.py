@@ -104,7 +104,6 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
     st.write(f"**Data do ex dividendos:** {info.get('exDividendDate', 'N/A')}")
     st.write(f"**Índice de pagamento:** {info.get('payoutRatio', 'N/A')}")
-    st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
 
   # Exibindo o DataFrame de dividendos dentro de um expander
     with st.expander("Histórico de Dividendos", expanded=False):
