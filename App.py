@@ -44,7 +44,7 @@ def exibir_info_empresa(info):
     st.write(f"**CEP:** {info.get('zip', 'N/A')}")
     st.write(f"**Telefone:** {info.get('phone', 'N/A')}")
     st.write(f"**Site:** {info.get('website', 'N/A')}")
-    st.write(f"**Site:** {info.get('website', 'N/A')}")
+    
       
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
