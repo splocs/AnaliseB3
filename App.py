@@ -10,7 +10,7 @@ from datetime import date
 # Configurando a largura da página
 
 st.set_page_config(
-    page_title="Ex-stream-ly Cool App",
+    page_title="Plotos.com.br",
     page_icon="FAV.png",
     layout="wide",
     initial_sidebar_state="expanded",
