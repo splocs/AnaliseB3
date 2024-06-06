@@ -113,17 +113,13 @@ def exibir_info_empresa(info, dividendos):
         if not dividendos.empty:
             st.dataframe(dividendos)
             
-        # Criando o gráfico de barras cinza com o histórico de dividendos
-fig, ax = plt.subplots()
-fig.patch.set_facecolor('black')  # Definindo a cor do fundo
-ax.set_facecolor('black')         # Definindo a cor do fundo do gráfico
-ax.bar(dividendos.index, dividendos.values, color='gray')  # Criando o gráfico de barras com barras cinza
-ax.set_title('Histórico de Dividendos', color='white')     # Configurando o título com cor branca
-ax.set_xlabel('Data', color='white')                       # Configurando o rótulo do eixo x com cor branca
-ax.set_ylabel('Dividendos', color='white')                 # Configurando o rótulo do eixo y com cor branca
-ax.grid(True, color='gray')                                # Configurando a grade com cor cinza
-ax.tick_params(colors='white')                             # Configurando os ticks com cor branca
-plt.show()
+            # Criando o gráfico de linhas azul com o histórico de dividendos
+            fig, ax = plt.subplots()
+            ax.plot(dividendos.index, dividendos.values, color='blue', marker='o', linestyle='-', linewidth=2)
+            ax.set_title('Histórico de Dividendos')
+            ax.set_xlabel('Data')
+            ax.set_ylabel('Dividendos')
+            ax.grid(True)
 
             # Exibindo o gráfico no Streamlit
             st.pyplot(fig)
