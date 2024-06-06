@@ -120,6 +120,8 @@ def exibir_info_empresa(info):
     st.write(f"**Data do ex dividendos:** {info.get('exDividendDate', 'N/A')}")
     st.write(f"**Índice de pagamento:** {info.get('payoutRatio', 'N/A')}")
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
+    st.write(f"**Índice de pagamento:** {info.get('dividends', 'N/A')}")
+
 
 
 
