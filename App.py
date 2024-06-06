@@ -19,9 +19,14 @@ st.set_page_config(
 
 # Função para formatar a data
 def formatar_data(data):
-    if data is not None:
-        return pd.to_datetime(data).strftime('%d-%m-%Y')
-    return 'N/A'
+    if isinstance(data, pd.Timestamp):
+        return data.strftime('%d-%m-%Y')
+    elif isinstance(data, str):
+        try:
+            return pd.to_datetime(data).strftime('%d-%m-%Y')
+        except ValueError:
+            return data
+    return data
 
 # Função para pegar os dados das ações
 def pegar_dados_acoes():
@@ -32,6 +37,7 @@ def pegar_dados_acoes():
 def pegar_valores_online(sigla_acao):
     df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM, progress=False)
     df.reset_index(inplace=True)
+    df['Date'] = df['Date'].apply(formatar_data)
     return df
 
 # Função para pegar as informações da empresa
@@ -53,7 +59,7 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**País:** {info.get('country', 'N/A')}")
     st.write(f"**CEP:** {info.get('zip', 'N/A')}")
     st.write(f"**Telefone:** {info.get('phone', 'N/A')}")
-    st.write(f"**Site:** {info.get('website', 'N/A')}")      
+    st.write(f"**Site:** {info.get('website', 'N/A')}")
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"Moeda financeira: {info.get('financialCurrency', 'N/A')}")
@@ -105,7 +111,7 @@ def exibir_info_empresa(info, dividendos):
     st.markdown("#### Dividendos") 
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
-    st.write(f"**Data do ex dividendos:** {info.get('exDividendDate', 'N/A')}")
+    st.write(f"**Data do ex dividendos:** {formatar_data(info.get('exDividendDate', 'N/A'))}")
     st.write(f"**Índice de pagamento:** {info.get('payoutRatio', 'N/A')}")
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
 
@@ -124,50 +130,16 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
     st.write(f"**Valor contábil:** {info.get('bookValue', 'N/A')}")
     st.write(f"**Preço/Valor contábil:** {info.get('priceToBook', 'N/A')}")
-    st.write(f"**Fim do último ano fiscal:** {info.get('lastFiscalYearEnd', 'N/A')}")
-    st.write(f"**Fim do próximo ano fiscal:** {info.get('nextFiscalYearEnd', 'N/A')}")
-    st.write(f"**Trimestre mais recente:** {info.get('mostRecentQuarter', 'N/A')}")
+    st.write(f"**Fim do último ano fiscal:** {formatar_data(info.get('lastFiscalYearEnd', 'N/A'))}")
+    st.write(f"**Fim do próximo ano fiscal:** {formatar_data(info.get('nextFiscalYearEnd', 'N/A'))}")
+    st.write(f"**Trimestre mais recente:** {formatar_data(info.get('mostRecentQuarter', 'N/A'))}")
     st.write(f"**Crescimento trimestral dos lucros:** {info.get('earningsQuarterlyGrowth', 'N/A')}")
     st.write(f"**Lucro líquido comum:** {info.get('netIncomeToCommon', 'N/A')}")
     st.write(f"**EPS (Lucro por ação) em retrospecto:** {info.get('trailingEps', 'N/A')}")
     st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
     st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
-    st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
-    st.write(f"**Beta:** {info.get('beta', 'N/A')}")
-    st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
-    st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
-    st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
-    st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
-    st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
-    st.write(f"**Valor contábil:** {info.get('bookValue', 'N/A')}")
-    st.write(f"**Preço/Valor contábil:** {info.get('priceToBook', 'N/A')}")
-    st.write(f"**Fim do último ano fiscal:** {info.get('lastFiscalYearEnd', 'N/A')}")
-    st.write(f"**Fim do próximo ano fiscal:** {info.get('nextFiscalYearEnd', 'N/A')}")
-    st.write(f"**Trimestre mais recente:** {info.get('mostRecentQuarter', 'N/A')}")
-    st.write(f"**Crescimento trimestral dos lucros:** {info.get('earningsQuarterlyGrowth', 'N/A')}")
-    st.write(f"**Lucro líquido comum:** {info.get('netIncomeToCommon', 'N/A')}")
-    st.write(f"**EPS (Lucro por ação) em retrospecto:** {info.get('trailingEps', 'N/A')}")
-    st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
-    st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
-    st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
-    st.write(f"**Beta:** {info.get('beta', 'N/A')}")
-    st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
-    st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
-    st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
-    st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
-    st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
-    st.write(f"**Valor contábil:** {info.get('bookValue', 'N/A')}")
-    st.write(f"**Preço/Valor contábil:** {info.get('priceToBook', 'N/A')}")
-    st.write(f"**Fim do último ano fiscal:** {info.get('lastFiscalYearEnd', 'N/A')}")
-    st.write(f"**Fim do próximo ano fiscal:** {info.get('nextFiscalYearEnd', 'N/A')}")
-    st.write(f"**Trimestre mais recente:** {info.get('mostRecentQuarter', 'N/A')}")
-    st.write(f"**Crescimento trimestral dos lucros:** {info.get('earningsQuarterlyGrowth', 'N/A')}")
-    st.write(f"**Lucro líquido comum:** {info.get('netIncomeToCommon', 'N/A')}")
-    st.write(f"**EPS (Lucro por ação) em retrospecto:** {info.get('trailingEps', 'N/A')}")
-    st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
-    st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
-    st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
-    
+    st.write(f"**Última data de divisão:** {formatar_data(info.get('lastSplitDate', 'N/A'))}")
+
 # Pegar a lista de ações
 acoes = pegar_dados_acoes()
 
