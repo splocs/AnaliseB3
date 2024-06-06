@@ -117,7 +117,6 @@ def exibir_info_empresa(info, dividendos):
             fig, ax = plt.subplots()
             ax.plot(dividendos.index, dividendos.values, color='blue', marker='o', linestyle='-', linewidth=2)
             ax.set_title('Histórico de Dividendos')
-            ax.set_xlabel('Data')
             ax.grid(True)
 
             # Exibindo o gráfico no Streamlit
