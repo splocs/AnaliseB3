@@ -3,10 +3,13 @@ import pandas as pd
 import yfinance as yf
 from PIL import Image
 from datetime import date
-from googletrans import Translator
+from googletrans import Translator 
+
+
 
 # Configurando a largura da página
 st.set_page_config(layout="wide")
+
 
 # Função para formatar a data
 def formatar_data(data):
@@ -14,16 +17,24 @@ def formatar_data(data):
         return pd.to_datetime(data, unit='s').strftime('%d-%m-%Y')
     return 'N/A'
 
-# Função para traduzir texto
+    # Função para traduzir texto
 def traduzir_texto(texto, destino='pt'):
     translator = Translator()
     traducao = translator.translate(texto, dest=destino)
     return traducao.text
 
+   
+
 # Função para pegar os dados das ações
 def pegar_dados_acoes():
     path = 'https://raw.githubusercontent.com/splocs/meu-repositorio/main/acoes.csv'
     return pd.read_csv(path, delimiter=';')
+
+# Função para pegar os valores online
+def pegar_valores_online(sigla_acao):
+    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM, progress=False)
+    df.reset_index(inplace=True)
+    return df
 
 # Função para pegar as informações da empresa
 def pegar_info_empresa(sigla_acao):
@@ -33,6 +44,7 @@ def pegar_info_empresa(sigla_acao):
 
 # Função para exibir informações da empresa
 def exibir_info_empresa(info):
+    
     st.write(f"**Nome:** {info.get('longName', 'N/A')}")
     st.write(f"**Endereço:** {info.get('address1', 'N/A')}")
     st.write(f"**Cidade:** {info.get('city', 'N/A')}")
@@ -43,13 +55,8 @@ def exibir_info_empresa(info):
     st.write(f"**Site:** {info.get('website', 'N/A')}")      
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
-    
-    # Traduzir a descrição da empresa antes de exibi-la
-    descricao_longa = info.get('longBusinessSummary', 'N/A')
-    descricao_traduzida = traduzir_texto(descricao_longa)
-    st.write(f"**Descrição:** {descricao_traduzida}")
-  
-    # Exibição dos diretores dentro de um expander sem borda
+    st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
+  # Exibição dos diretores dentro de um expander sem borda
     with st.expander("Diretores da Empresa", expanded=False):
         directors = info.get('companyOfficers', [])
         if directors:
@@ -67,6 +74,8 @@ def exibir_info_empresa(info):
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
+ 
+  
 
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
@@ -97,8 +106,4 @@ sigla_acao_escolhida += '.SA'
 # Pegar e exibir as informações da empresa
 info_acao = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
-exibir_info_empresa(info_acao)
-# Pegar e exibir as informações da empresa
-info_acao = pegar_info_empresa(sigla_acao_escolhida)
-st.header(f"Informações da ação: {nome_acao_escolhida}")
-exibir_info_empresa(info_acao)
+exibir_info_empresa(info_acao)"
