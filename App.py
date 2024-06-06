@@ -88,7 +88,7 @@ def exibir_info_empresa(info):
     st.write(f"**Preço Fechamento Anterior:** {info.get('previousClose', 'N/A')}")
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Preço de Compra Atual(Bid):** {info.get('bid', 'N/A')}")
-    st.write(f"**Pedido de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
+    st.write(f"**Preço de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
     st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
     st.write(f"**Volume médio nos últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
     st.write(f"**Volume médio diário nos últimos 10 dias:** {info.get('averageDailyVolume10Day', 'N/A')}")
