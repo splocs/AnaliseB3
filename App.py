@@ -3,7 +3,6 @@ import pandas as pd
 import yfinance as yf
 from PIL import Image
 from datetime import date
-import plotly.express as px
 
 # Configurando a largura da página
 st.set_page_config(
@@ -123,7 +122,6 @@ def exibir_info_empresa(info, dividendos):
         else:
             st.write("Nenhum dividendo encontrado.")
 
-
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
@@ -156,8 +154,6 @@ info, dividendos = pegar_info_empresa(acao)
 
 # Exibe informações da empresa
 exibir_info_empresa(info, dividendos)
-
-
 
 
 
