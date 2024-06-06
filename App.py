@@ -89,6 +89,10 @@ def exibir_info_empresa(info):
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Preço de Compra Atual(Bid):** {info.get('bid', 'N/A')}")
     st.write(f"**Pedido de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
+    st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
+    st.write(f"**Volume médio nos últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
+    st.write(f"**Volume médio diário nos últimos 10 dias:** {info.get('averageDailyVolume10Day', 'N/A')}")
+
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
     st.write(f"**Data do ex dividendos:** {info.get('exDividendDate', 'N/A')}")
@@ -97,9 +101,7 @@ def exibir_info_empresa(info):
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
-    st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
-    st.write(f"**Volume médio nos últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
-    st.write(f"**Volume médio diário nos últimos 10 dias:** {info.get('averageDailyVolume10Day', 'N/A')}")
+   
    
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
     st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
