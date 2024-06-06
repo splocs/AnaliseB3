@@ -46,6 +46,9 @@ def exibir_info_empresa(info):
     st.write(f"**Site:** {info.get('website', 'N/A')}")
     st.write(f"**Razão de ações vendidas a descoberto:** {info.get('shortRatio', 'N/A')}")
 
+    # Exibindo o risco geral com uma explicação ao passar o mouse
+    st.write(f"**Risco Geral:** {info.get('overallRisk', 'N/A')}", help="Este é o Risco Geral associado aos dados ou ao sistema.")
+
       
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
