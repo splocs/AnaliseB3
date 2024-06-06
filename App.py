@@ -114,7 +114,7 @@ def exibir_info_empresa(info):
 
     st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
     st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
-    st.write(f"**Ações flutuantes:** {info.get('floatShares', 'N/A')}")
+    st.write(f"**Free Float:** {info.get('floatShares', 'N/A')}")
     st.write(f"**Ações emitidas:** {info.get('sharesOutstanding', 'N/A')}")
     st.write(f"**Percentual mantido por insiders:** {info.get('heldPercentInsiders', 'N/A')}")
     st.write(f"**Percentual mantido por instituições:** {info.get('heldPercentInstitutions', 'N/A')}")
