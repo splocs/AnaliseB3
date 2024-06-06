@@ -95,6 +95,13 @@ def exibir_info_empresa(info):
     st.markdown("#### Volume") 
     st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
     st.write(f"**Volume médio últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
+
+    st.markdown("#### Float") 
+    st.write(f"**Free Float:** {info.get('floatShares', 'N/A')}")
+    st.write(f"**Ações em circulação:** {info.get('sharesOutstanding', 'N/A')}")
+    st.write(f"**Percentual mantido por insiders:** {info.get('heldPercentInsiders', 'N/A')}")
+    st.write(f"**Percentual mantido por instituições:** {info.get('heldPercentInstitutions', 'N/A')}")
+    st.write(f"**Ações emitidas implícitas:** {info.get('impliedSharesOutstanding', 'N/A')}")
    
 
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
@@ -114,11 +121,7 @@ def exibir_info_empresa(info):
 
     st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
     st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
-    st.write(f"**Free Float:** {info.get('floatShares', 'N/A')}")
-    st.write(f"**Ações emitidas:** {info.get('sharesOutstanding', 'N/A')}")
-    st.write(f"**Percentual mantido por insiders:** {info.get('heldPercentInsiders', 'N/A')}")
-    st.write(f"**Percentual mantido por instituições:** {info.get('heldPercentInstitutions', 'N/A')}")
-    st.write(f"**Ações emitidas implícitas:** {info.get('impliedSharesOutstanding', 'N/A')}")
+    
     st.write(f"**Valor contábil:** {info.get('bookValue', 'N/A')}")
     st.write(f"**Preço/Valor contábil:** {info.get('priceToBook', 'N/A')}")
     st.write(f"**Fim do último ano fiscal:** {info.get('lastFiscalYearEnd', 'N/A')}")
