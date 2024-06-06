@@ -77,7 +77,7 @@ def exibir_info_empresa(info):
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
-
+    st.write(f"**Descrição:** {descricao_traduzida}")
 
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
