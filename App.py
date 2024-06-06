@@ -97,7 +97,7 @@ def exibir_info_empresa(info):
     st.write(f"**Preço mediano alvo:** {info.get('targetMedianPrice', 'N/A')}")
     st.write(f"**Média das recomendações:** {info.get('recommendationMean', 'N/A')}")
     st.write(f"Número de opiniões de analistas: {info.get('numberOfAnalystOpinions', 'N/A')}")
-
+    st.write(f"Recomendação: {info.get('recommendationKey', 'N/A')}")
 
     st.markdown("#### Volume") 
     st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
