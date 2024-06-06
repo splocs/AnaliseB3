@@ -20,7 +20,7 @@ st.set_page_config(
 # Função para formatar a data
 def formatar_data(data):
     if data is not None:
-        return pd.to_datetime(data, unit='s').strftime('%d-%m-%Y')
+        return pd.to_datetime(data).strftime('%d-%m-%Y')
     return 'N/A'
 
 # Função para pegar os dados das ações
@@ -38,7 +38,10 @@ def pegar_valores_online(sigla_acao):
 def pegar_info_empresa(sigla_acao):
     ticker = yf.Ticker(sigla_acao)
     info = ticker.info
-    return info, ticker
+    dividendos = ticker.dividends
+    dividendos = dividendos.reset_index()
+    dividendos['Date'] = dividendos['Date'].apply(formatar_data)
+    return info, dividendos
 
 # Função para exibir informações da empresa
 def exibir_info_empresa(info, dividendos):
@@ -130,4 +133,52 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
     st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
     st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
-    st
+    st.write(f"**Beta:** {info.get('beta', 'N/A')}")
+    st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
+    st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
+    st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
+    st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
+    st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
+    st.write(f"**Valor contábil:** {info.get('bookValue', 'N/A')}")
+    st.write(f"**Preço/Valor contábil:** {info.get('priceToBook', 'N/A')}")
+    st.write(f"**Fim do último ano fiscal:** {info.get('lastFiscalYearEnd', 'N/A')}")
+    st.write(f"**Fim do próximo ano fiscal:** {info.get('nextFiscalYearEnd', 'N/A')}")
+    st.write(f"**Trimestre mais recente:** {info.get('mostRecentQuarter', 'N/A')}")
+    st.write(f"**Crescimento trimestral dos lucros:** {info.get('earningsQuarterlyGrowth', 'N/A')}")
+    st.write(f"**Lucro líquido comum:** {info.get('netIncomeToCommon', 'N/A')}")
+    st.write(f"**EPS (Lucro por ação) em retrospecto:** {info.get('trailingEps', 'N/A')}")
+    st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
+    st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
+    st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
+    st.write(f"**Beta:** {info.get('beta', 'N/A')}")
+    st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
+    st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
+    st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
+    st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
+    st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
+    st.write(f"**Valor contábil:** {info.get('bookValue', 'N/A')}")
+    st.write(f"**Preço/Valor contábil:** {info.get('priceToBook', 'N/A')}")
+    st.write(f"**Fim do último ano fiscal:** {info.get('lastFiscalYearEnd', 'N/A')}")
+    st.write(f"**Fim do próximo ano fiscal:** {info.get('nextFiscalYearEnd', 'N/A')}")
+    st.write(f"**Trimestre mais recente:** {info.get('mostRecentQuarter', 'N/A')}")
+    st.write(f"**Crescimento trimestral dos lucros:** {info.get('earningsQuarterlyGrowth', 'N/A')}")
+    st.write(f"**Lucro líquido comum:** {info.get('netIncomeToCommon', 'N/A')}")
+    st.write(f"**EPS (Lucro por ação) em retrospecto:** {info.get('trailingEps', 'N/A')}")
+    st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
+    st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
+    st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
+    
+# Pegar a lista de ações
+acoes = pegar_dados_acoes()
+
+# Filtros de seleção
+acao = st.selectbox('Selecione a Ação', acoes['sigla'])
+
+# Seleciona a ação
+DATA_INICIO = '2020-01-01'
+DATA_FIM = date.today().strftime('%Y-%m-%d')
+dados_acao = pegar_valores_online(acao)
+info, dividendos = pegar_info_empresa(acao)
+
+# Exibe informações da empresa
+exibir_info_empresa(info, dividendos)
