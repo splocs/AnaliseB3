@@ -63,7 +63,8 @@ def exibir_info_empresa(info):
             st.write("Nenhum diretor encontrado.")
     st.markdown("## Analise de Risco")   
     st.write(f"**Risco Geral:** {info.get('overallRisk', 'N/A')}")
-     
+    st.markdown(add_tooltip("**Preço atual:**", "O preço de mercado atual da ação") + f" {info.get('currentPrice', 'N/A')}", unsafe_allow_html=True)
+ 
 
     st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
     st.write(f"**Alta/baixa de 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')} / {info.get('fiftyTwoWeekLow', 'N/A')}")
