@@ -84,12 +84,12 @@ def exibir_info_empresa(info):
         else:
             st.write("Nenhum diretor encontrado.")
 
-    st.markdown("## Fundamentos")  
+    st.markdown("### PREÇO")  
     st.write(f"**Preço Fechamento Anterior:** {info.get('previousClose', 'N/A')}")
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Preço de Compra Atual(Bid):** {info.get('bid', 'N/A')}")
     st.write(f"**Preço de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
-    st.markdown("### Volume") 
+    st.markdown("### VOLUME") 
     st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
     st.write(f"**Volume médio nos últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
     st.write(f"**Volume médio diário nos últimos 10 dias:** {info.get('averageDailyVolume10Day', 'N/A')}")
