@@ -41,7 +41,7 @@ def pegar_info_empresa(sigla_acao):
     return info, ticker
 
 # Função para exibir informações da empresa
-def exibir_info_empresa(info):
+def exibir_info_empresa(info, dividendos):
     st.write(f"{info.get('shortName', 'N/A')}") 
     st.write(f"**Nome completo:** {info.get('longName', 'N/A')}")
     st.write(f"**Endereço:** {info.get('address1', 'N/A')}")
@@ -105,9 +105,13 @@ def exibir_info_empresa(info):
     st.write(f"**Data do ex dividendos:** {info.get('exDividendDate', 'N/A')}")
     st.write(f"**Índice de pagamento:** {info.get('payoutRatio', 'N/A')}")
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
-    st.write(f"**Índice de pagamento:** {info.get('df.dividends', 'N/A')}")
 
-    
+    # Exibindo o DataFrame de dividendos
+    st.markdown("#### Histórico de Dividendos")
+    if not dividendos.empty:
+        st.dataframe(dividendos)
+    else:
+        st.write("Nenhum dividendo encontrado.")
 
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
@@ -125,7 +129,10 @@ def exibir_info_empresa(info):
     st.write(f"**EPS (Lucro por ação) em retrospecto:** {info.get('trailingEps', 'N/A')}")
     st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
     st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
-    st.write(f"**Data da última divisão:** {info.get('lastSplitDate', 'N/A')}")
+    st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
+    st.write(f"**IPO:** {info.get('ipoExpectedDate', 'N/A')}")
+    st.write(f"**Receita trimestral:** {info.get('quarterlyRevenueGrowth', 'N/A')}")
+    st.write(f"**Valor das vendas:** {info.get('revenue', 'N/A')}")
     st.write(f"**Empresa/Receita:** {info.get('enterpriseToRevenue', 'N/A')}")
     st.write(f"**Empresa/EBITDA:** {info.get('enterpriseToEbitda', 'N/A')}")
     st.write(f"**Mudança em 52 semanas:** {info.get('52WeekChange', 'N/A')}")
@@ -152,7 +159,7 @@ def exibir_info_empresa(info):
     st.write(f"Margens brutas: {info.get('grossMargins', 'N/A')}")
     st.write(f"Margens EBITDA: {info.get('ebitdaMargins', 'N/A')}")
     st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
-    
+
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
@@ -182,15 +189,13 @@ sigla_acao_escolhida += '.SA'
 # Pegar e exibir as informações da empresa
 info_acao, ticker = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
-exibir_info_empresa(info_acao)
 
 # Pegar e exibir o histórico de dividendos
-st.markdown("#### Histórico de Dividendos")
 dividendos = ticker.dividends
-if not dividendos.empty:
-    st.dataframe(dividendos)
-else:
-    st.write("Nenhum dividendo encontrado.")
+
+# Exibir as informações da empresa e o histórico de dividendos
+exibir_info_empresa(info_acao, dividendos)
+
 
 
 
