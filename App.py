@@ -57,7 +57,7 @@ def pegar_info_empresa(sigla_acao):
 # Função para exibir informações da empresa
 def exibir_info_empresa(info):
     
-    st.write(f"**** {info.get('shortName', 'N/A')}")
+    st.write(f"* {info.get('shortName', 'N/A')}")
     st.write(f"**Nome:** {info.get('longName', 'N/A')}")    
     st.write(f"**Nome completo:** {info.get('longName', 'N/A')}")
     st.write(f"**Endereço:** {info.get('address1', 'N/A')}")
