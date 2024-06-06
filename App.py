@@ -3,7 +3,7 @@ import pandas as pd
 import yfinance as yf
 from PIL import Image
 from datetime import date
-from googletrans import Translator 
+
 
 
 
