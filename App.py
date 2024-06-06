@@ -106,12 +106,12 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Índice de pagamento:** {info.get('payoutRatio', 'N/A')}")
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
 
-    # Exibindo o DataFrame de dividendos dentro de um expander
-    with st.expander("Histórico de Dividendos", expanded=False):
-        if not dividendos.empty:
-            st.dataframe(dividendos)
-        else:
-            st.write("Nenhum dividendo encontrado.")
+    # Exibindo o DataFrame de dividendos
+    st.markdown("#### Histórico de Dividendos")
+    if not dividendos.empty:
+        st.dataframe(dividendos)
+    else:
+        st.write("Nenhum dividendo encontrado.")
 
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
@@ -130,4 +130,68 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
     st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
     st.write(f"**Última data de divisão:** {info.get('lastSplitDate', 'N/A')}")
-    st
+    st.write(f"**IPO:** {info.get('ipoExpectedDate', 'N/A')}")
+    st.write(f"**Receita trimestral:** {info.get('quarterlyRevenueGrowth', 'N/A')}")
+    st.write(f"**Valor das vendas:** {info.get('revenue', 'N/A')}")
+    st.write(f"**Empresa/Receita:** {info.get('enterpriseToRevenue', 'N/A')}")
+    st.write(f"**Empresa/EBITDA:** {info.get('enterpriseToEbitda', 'N/A')}")
+    st.write(f"**Mudança em 52 semanas:** {info.get('52WeekChange', 'N/A')}")
+    st.write(f"**Mudança em 52 semanas (S&P):** {info.get('SandP52WeekChange', 'N/A')}")
+    st.write(f"**Valor do último dividendo:** {info.get('lastDividendValue', 'N/A')}")
+    st.write(f"**Data do último dividendo:** {info.get('lastDividendDate', 'N/A')}")
+    st.write(f"**Tipo de cotação:** {info.get('quoteType', 'N/A')}")
+    st.write(f"**Data da primeira negociação (UTC):** {info.get('firstTradeDateEpochUtc', 'N/A')}")
+    st.write(f"Total de dinheiro: {info.get('totalCash', 'N/A')}")
+    st.write(f"Total de dinheiro por ação: {info.get('totalCashPerShare', 'N/A')}")
+    st.write(f"EBITDA: {info.get('ebitda', 'N/A')}")
+    st.write(f"Dívida total: {info.get('totalDebt', 'N/A')}")
+    st.write(f"Índice rápido: {info.get('quickRatio', 'N/A')}")
+    st.write(f"Índice de liquidez corrente: {info.get('currentRatio', 'N/A')}")
+    st.write(f"Receita total: {info.get('totalRevenue', 'N/A')}")
+    st.write(f"Dívida/Patrimônio líquido: {info.get('debtToEquity', 'N/A')}")
+    st.write(f"Receita por ação: {info.get('revenuePerShare', 'N/A')}")
+    st.write(f"Retorno sobre ativos: {info.get('returnOnAssets', 'N/A')}")
+    st.write(f"Retorno sobre patrimônio líquido: {info.get('returnOnEquity', 'N/A')}")
+    st.write(f"Fluxo de caixa livre: {info.get('freeCashflow', 'N/A')}")
+    st.write(f"Fluxo de caixa operacional: {info.get('operatingCashflow', 'N/A')}")
+    st.write(f"Crescimento dos lucros: {info.get('earningsGrowth', 'N/A')}")
+    st.write(f"Crescimento da receita: {info.get('revenueGrowth', 'N/A')}")
+    st.write(f"Margens brutas: {info.get('grossMargins', 'N/A')}")
+    st.write(f"Margens EBITDA: {info.get('ebitdaMargins', 'N/A')}")
+    st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
+
+# Definindo data de início e fim
+DATA_INICIO = '2017-01-01'
+DATA_FIM = date.today().strftime('%Y-%m-%d')
+
+# Logo
+logo_path = "logo.png"
+logo = Image.open(logo_path)
+
+# Exibir o logo no aplicativo Streamlit
+st.image(logo, width=250)
+
+# Exibir o logo na sidebar
+st.sidebar.image(logo, width=150)
+
+# Criando a sidebar
+st.sidebar.markdown('Escolha a ação')
+
+# Pegando os dados das ações
+df = pegar_dados_acoes()
+acao = df['snome']
+
+nome_acao_escolhida = st.sidebar.selectbox('Escolha uma ação:', acao)
+df_acao = df[df['snome'] == nome_acao_escolhida]
+sigla_acao_escolhida = df_acao.iloc[0]['sigla_acao']
+sigla_acao_escolhida += '.SA'
+
+# Pegar e exibir as informações da empresa
+info_acao, ticker = pegar_info_empresa(sigla_acao_escolhida)
+st.header(f"Informações da ação: {nome_acao_escolhida}")
+
+# Pegar e exibir o histórico de dividendos
+dividendos = ticker.dividends
+
+# Exibir as informações da empresa e o histórico de dividendos
+exibir_info_empresa(info_acao, dividendos)
