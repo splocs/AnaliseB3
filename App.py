@@ -57,8 +57,9 @@ def exibir_info_empresa(info):
     st.write(f"**Site:** {info.get('website', 'N/A')}")      
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
-    st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
     st.write(f"Moeda financeira: {info.get('financialCurrency', 'N/A')}")
+    st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
+    
   # Exibição dos diretores dentro de um expander sem borda
     with st.expander("Diretores da Empresa", expanded=False):
         directors = info.get('companyOfficers', [])
@@ -120,8 +121,6 @@ def exibir_info_empresa(info):
     st.write(f"**Data do último dividendo:** {info.get('lastDividendDate', 'N/A')}")
     st.write(f"**Bolsa:** {info.get('exchange', 'N/A')}")
     st.write(f"**Tipo de cotação:** {info.get('quoteType', 'N/A')}")
-    st.write(f"**Símbolo:** {info.get('symbol', 'N/A')}")
-    st.write(f"**Símbolo subjacente:** {info.get('underlyingSymbol', 'N/A')}")
     st.write(f"**Data da primeira negociação (UTC):** {info.get('firstTradeDateEpochUtc', 'N/A')}")
     st.write(f"**Nome completo do fuso horário:** {info.get('timeZoneFullName', 'N/A')}")
     st.write(f"**Nome curto do fuso horário:** {info.get('timeZoneShortName', 'N/A')}")
