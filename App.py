@@ -96,6 +96,7 @@ def exibir_info_empresa(info):
     st.write(f"**Preço médio alvo:** {info.get('targetMeanPrice', 'N/A')}")
     st.write(f"**Preço mediano alvo:** {info.get('targetMedianPrice', 'N/A')}")
     st.write(f"**Média das recomendações:** {info.get('recommendationMean', 'N/A')}")
+    st.write(f"Número de opiniões de analistas: {info.get('numberOfAnalystOpinions', 'N/A')}")
 
 
     st.markdown("#### Volume") 
@@ -153,7 +154,7 @@ def exibir_info_empresa(info):
     st.write(f"**ID do quadro de mensagens:** {info.get('messageBoardId', 'N/A')}")
     st.write(f"**Desvio de GMT em milissegundos:** {info.get('gmtOffSetMilliseconds', 'N/A')}")
    
-    st.write(f"Número de opiniões de analistas: {info.get('numberOfAnalystOpinions', 'N/A')}")
+    
     st.write(f"Total de dinheiro: {info.get('totalCash', 'N/A')}")
     st.write(f"Total de dinheiro por ação: {info.get('totalCashPerShare', 'N/A')}")
     st.write(f"EBITDA: {info.get('ebitda', 'N/A')}")
