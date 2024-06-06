@@ -74,17 +74,8 @@ def exibir_info_empresa(info):
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
-     # Obtenha a descrição longa do negócio e traduza-a para o português
  
-    # Obtenha as informações da empresa
-
-    
-    # Obtenha a descrição longa do negócio e traduza-a para o português
-    descricao_longa = info_empresa.get('longBusinessSummary', 'N/A')
-    descricao_traduzida = traduzir_texto(descricao_longa) if descricao_longa != 'N/A' else 'N/A'
-
-    # Exiba a descrição traduzida
-    st.write(f"**Descrição:** {descricao_traduzida}")
+  
 
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
