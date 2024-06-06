@@ -58,6 +58,7 @@ def exibir_info_empresa(info):
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
     st.write(f"**Indústria:** {info.get('industry', 'N/A')}")
     st.write(f"**Descrição:** {info.get('longBusinessSummary', 'N/A')}")
+    st.write(f"Moeda financeira: {info.get('financialCurrency', 'N/A')}")
   # Exibição dos diretores dentro de um expander sem borda
     with st.expander("Diretores da Empresa", expanded=False):
         directors = info.get('companyOfficers', [])
@@ -152,7 +153,7 @@ def exibir_info_empresa(info):
     st.write(f"Margens brutas: {info.get('grossMargins', 'N/A')}")
     st.write(f"Margens EBITDA: {info.get('ebitdaMargins', 'N/A')}")
     st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
-    st.write(f"Moeda financeira: {info.get('financialCurrency', 'N/A')}")
+    
  
 
 # Definindo data de início e fim
