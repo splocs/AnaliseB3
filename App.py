@@ -113,16 +113,15 @@ def exibir_info_empresa(info, dividendos):
         if not dividendos.empty:
             st.dataframe(dividendos)
             
-            
             # Criando o gráfico de linhas azul com o histórico de dividendos
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(x=dividendos.index, y=dividendos.values, mode='lines+markers', line=dict(color='blue', width=2)))
-            fig.update_layout(title='Histórico de Dividendos', xaxis_title='Data', yaxis_title='Dividendos')
-            fig.update_layout(plot_bgcolor='gold')  # Define a cor de fundo da figura
+            fig, ax = plt.subplots()
+            ax.plot(dividendos.index, dividendos.values, color='blue', marker='o', linestyle='-', linewidth=2)
+            ax.set_title('Histórico de Dividendos')
+            ax.grid(True)
+            fig.patch.set_facecolor('gold') 
 
-             # Exibindo o gráfico no Streamlit
-            st.plotly_chart(fig)
-
+            # Exibindo o gráfico no Streamlit
+            st.pyplot(fig)
         else:
             st.write("Nenhum dividendo encontrado.")
 
