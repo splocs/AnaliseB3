@@ -46,6 +46,8 @@ def pegar_info_empresa(sigla_acao):
 def exibir_info_empresa(info):
     
     st.write(f"**Nome:** {info.get('longName', 'N/A')}")
+    st.write(f"**Nome curto:** {info.get('shortName', 'N/A')}")
+    st.write(f"**Nome completo:** {info.get('longName', 'N/A')}")
     st.write(f"**Endereço:** {info.get('address1', 'N/A')}")
     st.write(f"**Cidade:** {info.get('city', 'N/A')}")
     st.write(f"**Estado:** {info.get('state', 'N/A')}")
@@ -119,8 +121,6 @@ def exibir_info_empresa(info):
     st.write(f"**Tipo de cotação:** {info.get('quoteType', 'N/A')}")
     st.write(f"**Símbolo:** {info.get('symbol', 'N/A')}")
     st.write(f"**Símbolo subjacente:** {info.get('underlyingSymbol', 'N/A')}")
-    st.write(f"**Nome curto:** {info.get('shortName', 'N/A')}")
-    st.write(f"**Nome completo:** {info.get('longName', 'N/A')}")
     st.write(f"**Data da primeira negociação (UTC):** {info.get('firstTradeDateEpochUtc', 'N/A')}")
     st.write(f"**Nome completo do fuso horário:** {info.get('timeZoneFullName', 'N/A')}")
     st.write(f"**Nome curto do fuso horário:** {info.get('timeZoneShortName', 'N/A')}")
