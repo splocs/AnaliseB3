@@ -115,7 +115,7 @@ def exibir_info_empresa(info, dividendos):
         else:
             st.write("Nenhum dividendo encontrado.")
 
-    st.dataframe(dividendos)
+  
 
     # Gráfico de barras
     st.markdown("#### Gráfico de Barras - Histórico de Dividendos")
