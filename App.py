@@ -123,12 +123,7 @@ def exibir_info_empresa(info, dividendos):
         else:
             st.write("Nenhum dividendo encontrado.")
 
-            # Plotar gráfico de barras
-st.markdown("#### Gráfico de Barras - Histórico de Dividendos")
-fig = px.bar(dividendos, x='Date', y='Dividends', labels={'Date': 'Data', 'Dividends': 'Dividendos'}, 
-             title='Histórico de Dividendos', color_discrete_sequence=['blue'], template='plotly_dark')
-fig.update_xaxes(type='category')
-st.plotly_chart(fig)
+            
 
 
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
