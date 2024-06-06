@@ -88,6 +88,10 @@ def exibir_info_empresa(info):
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Preço de Compra Atual(Bid):** {info.get('bid', 'N/A')}")
     st.write(f"**Preço de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
+    st.write(f"**Preço Médio dos últimos 50 dias:** {info.get('fiftyDayAverage', 'N/A')}")
+    st.write(f"**Preço Médio dos últimos 200 dias:** {info.get('twoHundredDayAverage', 'N/A')}")
+
+
     st.markdown("#### Volume") 
     st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
     st.write(f"**Volume médio nos últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
@@ -106,8 +110,7 @@ def exibir_info_empresa(info):
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
     st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
     st.write(f"**Preço/Vendas nos últimos 12 meses:** {info.get('priceToSalesTrailing12Months', 'N/A')}")
-    st.write(f"**Média dos últimos 50 dias:** {info.get('fiftyDayAverage', 'N/A')}")
-    st.write(f"**Média dos últimos 200 dias:** {info.get('twoHundredDayAverage', 'N/A')}")
+   
     st.write(f"**Moeda:** {info.get('currency', 'N/A')}")
     st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
     st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
