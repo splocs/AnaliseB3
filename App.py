@@ -19,9 +19,14 @@ st.set_page_config(
 
 # Função para formatar a data
 def formatar_data(data):
-    if data is not None:
-        return pd.to_datetime(data, unit='s').strftime('%d-%m-%Y')
-    return 'N/A'
+    if isinstance(data, pd.Timestamp):
+        return data.strftime('%d-%m-%Y')
+    elif isinstance(data, str):
+        try:
+            return pd.to_datetime(data).strftime('%d-%m-%Y')
+        except ValueError:
+            return data
+    return data
 
 # Função para pegar os dados das ações
 def pegar_dados_acoes():
