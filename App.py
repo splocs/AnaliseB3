@@ -109,7 +109,7 @@ def exibir_info_empresa(info, dividendos):
 
   
     # Exibindo o DataFrame de dividendos dentro de um expander
-    with st.expander("Histórico de Dividendos", expanded=False):
+    with st.expander("", expanded=False):
         if not dividendos.empty:
             st.dataframe(dividendos)
             
