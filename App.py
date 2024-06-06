@@ -119,7 +119,6 @@ def exibir_info_empresa(info):
     st.write(f"**Mudança em 52 semanas (S&P):** {info.get('SandP52WeekChange', 'N/A')}")
     st.write(f"**Valor do último dividendo:** {info.get('lastDividendValue', 'N/A')}")
     st.write(f"**Data do último dividendo:** {info.get('lastDividendDate', 'N/A')}")
-    st.write(f"**Bolsa:** {info.get('exchange', 'N/A')}")
     st.write(f"**Tipo de cotação:** {info.get('quoteType', 'N/A')}")
     st.write(f"**Data da primeira negociação (UTC):** {info.get('firstTradeDateEpochUtc', 'N/A')}")
     st.write(f"**Nome completo do fuso horário:** {info.get('timeZoneFullName', 'N/A')}")
