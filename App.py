@@ -111,7 +111,7 @@ def exibir_info_empresa(info):
     st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
     st.write(f"**Preço/Vendas nos últimos 12 meses:** {info.get('priceToSalesTrailing12Months', 'N/A')}")
    
-    st.write(f"**Moeda:** {info.get('currency', 'N/A')}")
+
     st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
     st.write(f"**Margens de lucro:** {info.get('profitMargins', 'N/A')}")
     st.write(f"**Ações flutuantes:** {info.get('floatShares', 'N/A')}")
