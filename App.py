@@ -40,6 +40,12 @@ def pegar_info_empresa(sigla_acao):
     info = ticker.info
     return info, ticker
 
+    # Função para formatar a data
+def formatar_data(data):
+    if data is not None:
+        return pd.to_datetime(data).strftime('%d-%m-%Y')
+    return 'N/A'
+
 # Função para exibir informações da empresa
 def exibir_info_empresa(info, dividendos):
     st.write(f"{info.get('shortName', 'N/A')}") 
