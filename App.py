@@ -90,6 +90,12 @@ def exibir_info_empresa(info):
     st.write(f"**Preço de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
     st.write(f"**Preço Médio dos últimos 50 dias:** {info.get('fiftyDayAverage', 'N/A')}")
     st.write(f"**Preço Médio dos últimos 200 dias:** {info.get('twoHundredDayAverage', 'N/A')}")
+    st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
+    st.write(f"**Preço alvo máximo:** {info.get('targetHighPrice', 'N/A')}")
+    st.write(f"**Preço alvo mínimo:** {info.get('targetLowPrice', 'N/A')}")
+    st.write(f"**Preço médio alvo:** {info.get('targetMeanPrice', 'N/A')}")
+    st.write(f"**Preço mediano alvo:** {info.get('targetMedianPrice', 'N/A')}")
+    st.write(f"**Média das recomendações:** {info.get('recommendationMean', 'N/A')}")
 
 
     st.markdown("#### Volume") 
@@ -146,12 +152,7 @@ def exibir_info_empresa(info):
     st.write(f"**UUID:** {info.get('uuid', 'N/A')}")
     st.write(f"**ID do quadro de mensagens:** {info.get('messageBoardId', 'N/A')}")
     st.write(f"**Desvio de GMT em milissegundos:** {info.get('gmtOffSetMilliseconds', 'N/A')}")
-    st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
-    st.write(f"**Preço alvo máximo:** {info.get('targetHighPrice', 'N/A')}")
-    st.write(f"**Preço alvo mínimo:** {info.get('targetLowPrice', 'N/A')}")
-    st.write(f"**Preço médio alvo:** {info.get('targetMeanPrice', 'N/A')}")
-    st.write(f"**Preço mediano alvo:** {info.get('targetMedianPrice', 'N/A')}")
-    st.write(f"**Média das recomendações:** {info.get('recommendationMean', 'N/A')}")
+   
     st.write(f"Número de opiniões de analistas: {info.get('numberOfAnalystOpinions', 'N/A')}")
     st.write(f"Total de dinheiro: {info.get('totalCash', 'N/A')}")
     st.write(f"Total de dinheiro por ação: {info.get('totalCashPerShare', 'N/A')}")
