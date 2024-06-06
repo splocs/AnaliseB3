@@ -90,7 +90,7 @@ def exibir_info_empresa(info):
     st.write(f"**Preço de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
     st.write(f"**Preço Médio dos últimos 50 dias:** {info.get('fiftyDayAverage', 'N/A')}")
     st.write(f"**Preço Médio dos últimos 200 dias:** {info.get('twoHundredDayAverage', 'N/A')}")
-     st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
+    st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
     st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
     st.write(f"**Preço alvo máximo:** {info.get('targetHighPrice', 'N/A')}")
     st.write(f"**Preço alvo mínimo:** {info.get('targetLowPrice', 'N/A')}")
