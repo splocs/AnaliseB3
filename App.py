@@ -45,7 +45,6 @@ def exibir_info_empresa(info):
     st.write(f"**Telefone:** {info.get('phone', 'N/A')}")
     st.write(f"**Site:** {info.get('website', 'N/A')}")
     st.write(f"**Razão de ações vendidas a descoberto:** {info.get('shortRatio', 'N/A')}")
-    st.write(f"**Rico Geral**<span title="O risco geral refere-se à probabilidade de que uma ação resultará em perdas, considerando fatores como volatilidade do mercado, desempenho financeiro da empresa e condições econômicas gerais.">Risco Geral:</span>** {info.get("overallRisk", "N/A")}', unsafe_allow_html=True)
 
       
     st.write(f"**Setor:** {info.get('sector', 'N/A')}")
