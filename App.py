@@ -77,7 +77,7 @@ def exibir_info_empresa(info):
      # Obtenha a descrição longa do negócio e traduza-a para o português
    if sigla_acao:
     # Obtenha as informações da empresa
-    info_empresa = pegar_info_empresa(sigla_acao)
+
     
     # Obtenha a descrição longa do negócio e traduza-a para o português
     descricao_longa = info_empresa.get('longBusinessSummary', 'N/A')
