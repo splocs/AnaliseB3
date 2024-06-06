@@ -75,7 +75,7 @@ def exibir_info_empresa(info):
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
      # Obtenha a descrição longa do negócio e traduza-a para o português
-   if sigla_acao:
+ 
     # Obtenha as informações da empresa
 
     
