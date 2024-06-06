@@ -9,6 +9,7 @@ from datetime import date
 
 # Configurando a largura da página
 st.set_page_config(layout="wide")
+st.set_theme("dark")
 
 
 
