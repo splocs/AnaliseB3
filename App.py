@@ -206,11 +206,12 @@ df_acao = df[df['snome'] == nome_acao_escolhida]
 sigla_acao_escolhida = df_acao.iloc[0]['sigla_acao']
 sigla_acao_escolhida += '.SA'
 
+
+
 # Pegar e exibir as informações da empresa
-info_acao = pegar_info_empresa(sigla_acao_escolhida)
+info_acao, ticker = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
 exibir_info_empresa(info_acao)
-
 
 # Pegar e exibir o histórico de dividendos
 st.markdown("#### Histórico de Dividendos")
