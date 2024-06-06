@@ -90,12 +90,14 @@ def exibir_info_empresa(info):
     st.write(f"**Preço de Venda Atual (Ask):** {info.get('ask', 'N/A')}")
     st.write(f"**Preço Médio dos últimos 50 dias:** {info.get('fiftyDayAverage', 'N/A')}")
     st.write(f"**Preço Médio dos últimos 200 dias:** {info.get('twoHundredDayAverage', 'N/A')}")
+     st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
     st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
     st.write(f"**Preço alvo máximo:** {info.get('targetHighPrice', 'N/A')}")
     st.write(f"**Preço alvo mínimo:** {info.get('targetLowPrice', 'N/A')}")
     st.write(f"**Preço médio alvo:** {info.get('targetMeanPrice', 'N/A')}")
     st.write(f"**Preço mediano alvo:** {info.get('targetMedianPrice', 'N/A')}")
     st.write(f"**Média das recomendações:** {info.get('recommendationMean', 'N/A')}")
+    st.write(f"**Preço/Vendas nos últimos 12 meses:** {info.get('priceToSalesTrailing12Months', 'N/A')}")
     st.write(f"Número de opiniões de analistas: {info.get('numberOfAnalystOpinions', 'N/A')}")
     st.write(f"Recomendação: {info.get('recommendationKey', 'N/A')}")
 
@@ -110,20 +112,23 @@ def exibir_info_empresa(info):
     st.write(f"**Percentual mantido por instituições:** {info.get('heldPercentInstitutions', 'N/A')}")
     st.write(f"**Número de Ações mantidas por insiders:** {info.get('impliedSharesOutstanding', 'N/A')}")
    
-
+    st.markdown("#### Dividendos") 
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
     st.write(f"**Data do ex dividendos:** {info.get('exDividendDate', 'N/A')}")
     st.write(f"**Índice de pagamento:** {info.get('payoutRatio', 'N/A')}")
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
+
+
+
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
    
    
     st.write(f"**Capitalização de mercado:** {info.get('marketCap', 'N/A')}")
-    st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
-    st.write(f"**Preço/Vendas nos últimos 12 meses:** {info.get('priceToSalesTrailing12Months', 'N/A')}")
+   
+    
    
 
     st.write(f"**Valor da empresa:** {info.get('enterpriseValue', 'N/A')}")
