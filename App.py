@@ -115,6 +115,15 @@ def exibir_info_empresa(info, dividendos):
         else:
             st.write("Nenhum dividendo encontrado.")
 
+    st.dataframe(dividendos)
+
+    # Gráfico de barras
+    st.markdown("#### Gráfico de Barras - Histórico de Dividendos")
+    fig_bar = px.bar(dividendos, x='Date', y='Dividends', labels={'Date': 'Data', 'Dividends': 'Dividendos'},
+                     title='Histórico de Dividendos', color_discrete_sequence=['blue'], template='plotly_dark')
+    fig_bar.update_xaxes(type='category')
+    st.plotly_chart(fig_bar)
+
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
