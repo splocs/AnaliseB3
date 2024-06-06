@@ -5,8 +5,7 @@ from PIL import Image
 from datetime import date
 
 
-# Define o tema escuro
-st.set_theme("dark")
+
 
 # Configurando a largura da página
 st.set_page_config(layout="wide")
