@@ -210,3 +210,12 @@ sigla_acao_escolhida += '.SA'
 info_acao = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
 exibir_info_empresa(info_acao)
+
+
+# Pegar e exibir o histórico de dividendos
+st.markdown("#### Histórico de Dividendos")
+dividendos = ticker.dividends
+if not dividendos.empty:
+    st.dataframe(dividendos)
+else:
+    st.write("Nenhum dividendo encontrado.")
