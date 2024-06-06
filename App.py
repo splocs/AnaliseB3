@@ -92,12 +92,14 @@ def exibir_info_empresa(info):
     st.write(f"**Preço Médio dos últimos 200 dias:** {info.get('twoHundredDayAverage', 'N/A')}")
     st.write(f"**Máxima das últimas 52 semanas:** {info.get('fiftyTwoWeekHigh', 'N/A')}")
     st.write(f"**Preço atual:** {info.get('currentPrice', 'N/A')}")
+    st.write(f"**Preço/Vendas nos últimos 12 meses:** {info.get('priceToSalesTrailing12Months', 'N/A')}")
+
+    st.markdown("#### Recomendações Analistas") 
+    st.write(f"**Média das recomendações:** {info.get('recommendationMean', 'N/A')}")
     st.write(f"**Preço alvo máximo:** {info.get('targetHighPrice', 'N/A')}")
     st.write(f"**Preço alvo mínimo:** {info.get('targetLowPrice', 'N/A')}")
     st.write(f"**Preço médio alvo:** {info.get('targetMeanPrice', 'N/A')}")
     st.write(f"**Preço mediano alvo:** {info.get('targetMedianPrice', 'N/A')}")
-    st.write(f"**Média das recomendações:** {info.get('recommendationMean', 'N/A')}")
-    st.write(f"**Preço/Vendas nos últimos 12 meses:** {info.get('priceToSalesTrailing12Months', 'N/A')}")
     st.write(f"Número de opiniões de analistas: {info.get('numberOfAnalystOpinions', 'N/A')}")
     st.write(f"Recomendação: {info.get('recommendationKey', 'N/A')}")
 
