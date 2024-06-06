@@ -113,17 +113,18 @@ def exibir_info_empresa(info, dividendos):
         if not dividendos.empty:
             st.dataframe(dividendos)
             
-            # Criando o gráfico de linhas azul com o histórico de dividendos
-            fig, ax = plt.subplots()
-            ax.plot(dividendos.index, dividendos.values, color='blue', marker='o', linestyle='-', linewidth=2)
-            ax.set_title('Histórico de Dividendos')
-            ax.grid(True)
-            fig.patch.set_facecolor('gold') 
+            
+if len(dividendos.index) > 0:
+    # Criando o gráfico de linhas azul com o histórico de dividendos
+    plt.plot(dividendos.index, dividendos.values, color='blue', marker='o', linestyle='-', linewidth=2)
+    plt.title('Histórico de Dividendos')
+    plt.grid(True)
+    plt.gcf().set_facecolor('gold')  # Define a cor de fundo da figura
 
-            # Exibindo o gráfico no Streamlit
-            st.pyplot(fig)
-        else:
-            st.write("Nenhum dividendo encontrado.")
+    # Exibindo o gráfico no Streamlit
+    st.pyplot(plt)
+else:
+    st.write("Nenhum dividendo encontrado.")
 
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
