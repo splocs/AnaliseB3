@@ -104,8 +104,8 @@ def exibir_info_empresa(info):
     st.write(f"**Volume médio últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
 
     st.markdown("#### Float") 
-    st.write(f"**Free Float:** {info.get('floatShares', 'N/A')}")
     st.write(f"**Ações em circulação:** {info.get('sharesOutstanding', 'N/A')}")
+    st.write(f"**Free Float:** {info.get('floatShares', 'N/A')}")   
     st.write(f"**Percentual mantido por insiders:** {info.get('heldPercentInsiders', 'N/A')}")
     st.write(f"**Percentual mantido por instituições:** {info.get('heldPercentInstitutions', 'N/A')}")
     st.write(f"**Número de Ações mantidas por insiders:** {info.get('impliedSharesOutstanding', 'N/A')}")
@@ -148,12 +148,7 @@ def exibir_info_empresa(info):
     st.write(f"**Data do último dividendo:** {info.get('lastDividendDate', 'N/A')}")
     st.write(f"**Tipo de cotação:** {info.get('quoteType', 'N/A')}")
     st.write(f"**Data da primeira negociação (UTC):** {info.get('firstTradeDateEpochUtc', 'N/A')}")
-    st.write(f"**Nome completo do fuso horário:** {info.get('timeZoneFullName', 'N/A')}")
-    st.write(f"**Nome curto do fuso horário:** {info.get('timeZoneShortName', 'N/A')}")
-    st.write(f"**UUID:** {info.get('uuid', 'N/A')}")
-    st.write(f"**ID do quadro de mensagens:** {info.get('messageBoardId', 'N/A')}")
-    st.write(f"**Desvio de GMT em milissegundos:** {info.get('gmtOffSetMilliseconds', 'N/A')}")
-   
+        
     
     st.write(f"Total de dinheiro: {info.get('totalCash', 'N/A')}")
     st.write(f"Total de dinheiro por ação: {info.get('totalCashPerShare', 'N/A')}")
