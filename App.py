@@ -95,7 +95,7 @@ def exibir_info_empresa(info):
     st.markdown("#### Volume") 
     st.write(f"**Volume médio:** {info.get('averageVolume', 'N/A')}")
     st.write(f"**Volume médio nos últimos 10 dias:** {info.get('averageVolume10days', 'N/A')}")
-    st.write(f"**Volume médio diário nos últimos 10 dias:** {info.get('averageDailyVolume10Day', 'N/A')}")
+   
 
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
