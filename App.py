@@ -116,7 +116,7 @@ def exibir_info_empresa(info, dividendos):
             # Criando o gráfico de linhas azul com o histórico de dividendos
             fig, ax = plt.subplots()
             ax.plot(dividendos.index, dividendos.values, color='blue', marker='o', linestyle='-', linewidth=1)
-            ax.set_title('Histórico de Dividendos', fontsize=12)  # Ajuste o tamanho do título conforme necessário
+            ax.set_title('Histórico de Dividendos', fontsize=5)  # Ajuste o tamanho do título conforme necessário
             ax.grid(True)
 
             # Ajustando o tamanho das letras nos eixos x e y
