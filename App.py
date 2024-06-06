@@ -101,7 +101,7 @@ def exibir_info_empresa(info):
     st.write(f"**Ações em circulação:** {info.get('sharesOutstanding', 'N/A')}")
     st.write(f"**Percentual mantido por insiders:** {info.get('heldPercentInsiders', 'N/A')}")
     st.write(f"**Percentual mantido por instituições:** {info.get('heldPercentInstitutions', 'N/A')}")
-    st.write(f"**Ações emitidas implícitas:** {info.get('impliedSharesOutstanding', 'N/A')}")
+    st.write(f"**Número de Ações mantidas por insiders:** {info.get('impliedSharesOutstanding', 'N/A')}")
    
 
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
