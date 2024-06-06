@@ -123,6 +123,7 @@ def exibir_info_empresa(info, dividendos):
         else:
             st.write("Nenhum dividendo encontrado.")
 
+
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) projetado:** {info.get('forwardPE', 'N/A')}")
