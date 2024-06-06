@@ -154,6 +154,3 @@ info, dividendos = pegar_info_empresa(acao)
 
 # Exibe informações da empresa
 exibir_info_empresa(info, dividendos)
-
-
-
