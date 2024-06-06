@@ -124,7 +124,7 @@ def exibir_info_empresa(info, dividendos):
             fig.patch.set_facecolor('gold') 
 
              # Ajustando o tamanho da figura
-            fig.set_size_inches(4, 2)  # Escolha os tamanhos que preferir
+            fig.set_size_inches(1, 1)  # Escolha os tamanhos que preferir
 
 
             # Exibindo o gráfico no Streamlit
