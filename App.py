@@ -118,15 +118,7 @@ def exibir_info_empresa(info, dividendos):
     fig_bar.update_xaxes(type='category')
     st.plotly_chart(fig_bar)
 
-    # Gráfico de linha
-    st.markdown("#### Gráfico de Linha - Histórico de Dividendos")
-    fig_line = go.Figure()
-    fig_line.add_trace(go.Scatter(x=dividendos['Date'], y=dividendos['Dividends'],
-                                  mode='lines+markers', name='Dividendos', line=dict(color='blue')))
-    fig_line.update_layout(title='Histórico de Dividendos',
-                           xaxis_title='Data', yaxis_title='Dividendos',
-                           template='plotly_dark')
-    st.plotly_chart(fig_line)
+ 
 
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
