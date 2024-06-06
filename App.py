@@ -60,7 +60,7 @@ def exibir_info_empresa(info):
             st.write("Nenhum diretor encontrado.")
 
     st.markdown("## Analise de Risco")  
-    st.write(f"**Dica de preço Analistas:** {info.get('priceHint', 'N/A')}")
+    st.write(f"**Numedo de casas do preço da ação:** {info.get('priceHint', 'N/A')}")
     st.write(f"**Preço Fechamento Anterior:** {info.get('previousClose', 'N/A')}")
     st.write(f"**Preço Fechamento Anterior Mercado Regular:** {info.get('regularMarketPreviousClose', 'N/A')}")
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
