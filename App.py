@@ -120,6 +120,9 @@ def exibir_info_empresa(info, dividendos):
             ax.grid(True)
             fig.patch.set_facecolor('gold') 
 
+            # Ajustando o tamanho da figura
+            fig.set_size_inches(8, 6)  # Escolha os tamanhos que preferir
+
             # Exibindo o gráfico no Streamlit
             st.pyplot(fig)
         else:
