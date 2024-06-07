@@ -19,15 +19,19 @@ st.set_page_config(
 )
 
 def criar_grafico_dividendos(dividendos):
-    fig = px.bar(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", labels={'index': 'Data', 'Dividends': 'Dividendos'}, color_discrete_sequence=['blue']
-       fig.update_layout(
-        margin=dict(l=10, r=10, t=40, b=10),
-        xaxis=dict(showticklabels=False),
-        yaxis=dict(showticklabels=False),
-        dragmode='pan',
-        modebar_remove=['zoom', 'zoomIn', 'zoomOut', 'autoScale', 'resetScale']
+    fig = px.line(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", 
+                  labels={'index': '', 'Dividends': ''}, color_discrete_sequence=['blue'])
+
+    fig.update_layout(
+        showlegend=False,  # Remove a legenda
+        xaxis_title=None,  # Remove o título do eixo x
+        yaxis_title=None,  # Remove o título do eixo y
+        title_x=0.5,  # Centraliza o título
+        title_y=0.9,  # Ajusta a posição do título no eixo y
+        margin=dict(l=20, r=20, t=50, b=20),  # Ajusta as margens
+        xaxis=dict(fixedrange=True),  # Desabilita o zoom no eixo x
+        yaxis=dict(fixedrange=True)  # Desabilita o zoom no eixo y
     )
-    return fig
 
 
 
