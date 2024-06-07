@@ -194,9 +194,15 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"Margens EBITDA: {info.get('ebitdaMargins', 'N/A')}")
     st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
 
-# Definindo data de início e fim
+
+
+# Definindo as datas de início e fim
 DATA_INICIO = '2017-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
+
+# Chamando a função para obter os valores online sem cache e com período definido
+df = pegar_valores_online_periodo_definido(sigla_acao_escolhida, DATA_INICIO, DATA_FIM)
+
 
 # Logo
 logo_path = "logo.png"
