@@ -198,7 +198,7 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
 
 # Definindo data de início e fim
-DATA_INICIO = '2008-01-01'
+DATA_INICIO = '2024-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
 
 # Logo
