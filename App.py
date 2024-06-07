@@ -232,3 +232,7 @@ dividendos = ticker.dividends
 # Exibir as informações da empresa e o histórico de dividendos
 exibir_info_empresa(info_acao, dividendos)
 
+# Obtenha os últimos dividendos
+dividends = stock_info.get_dividends(symbol)
+
+print("Últimos dividendos para", hbor3.sa, ":", dividends)
