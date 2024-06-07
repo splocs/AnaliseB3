@@ -193,6 +193,11 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"Margens EBITDA: {info.get('ebitdaMargins', 'N/A')}")
     st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
 
+    info = ticker.dividends
+
+# Exibir as informações
+print("Dividendos: " + str(info))
+
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
@@ -230,7 +235,3 @@ dividendos = ticker.dividends
 # Exibir as informações da empresa e o histórico de dividendos
 exibir_info_empresa(info_acao, dividendos)
 
-info = ticker.dividends
-
-# Exibir as informações
-print("Dividendos: " + str(info))
