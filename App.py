@@ -3,6 +3,7 @@ import pandas as pd
 import yfinance as yf
 from PIL import Image
 from datetime import date
+import plotly.express as px
 
 # Configurando a largura da página
 st.set_page_config(
