@@ -18,6 +18,12 @@ st.set_page_config(
     }
 )
 
+def criar_grafico_dividendos(dividendos):
+    fig = px.bar(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", labels={'index': 'Data', 'Dividends': 'Dividendos'}, color_discrete_sequence=['blue'])
+    return fig
+
+
+
 # Função para formatar a data
 def formatar_data(data):
     if data is not None:
