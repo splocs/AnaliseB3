@@ -36,6 +36,7 @@ def pegar_dados_acoes():
     return pd.read_csv(path, delimiter=';')
 
 # Função para pegar os valores online
+@st.cache
 def pegar_valores_online(sigla_acao):
     df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM, progress=False)
     df.reset_index(inplace=True)
