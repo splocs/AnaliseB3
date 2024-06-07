@@ -21,14 +21,7 @@ st.set_page_config(
 def criar_grafico_dividendos(dividendos):
     fig = px.line(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", 
                   labels={'index': '', 'Dividends': ''}, color_discrete_sequence=['blue'])
-                   # Adiciona pontos nos dias de pagamento de dividendos
-    fig.add_trace(go.Scatter(
-        x=dividendos.index,
-        y=dividendos['Dividends'],
-        mode='markers',
-        marker=dict(color='red', size=8, symbol='circle'),
-        showlegend=False
-    ))
+                  
 
     fig.update_layout(
         showlegend=False,  # Remove a legenda
