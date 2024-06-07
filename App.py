@@ -114,12 +114,14 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
 
   
-    # Exibindo o DataFrame de dividendos dentro de um expander
-    with st.expander("Histórico de Dividendos", expanded=False):
-        if not dividendos.empty:
-            st.dataframe(dividendos)
-        else:
-            st.write("Nenhum dividendo encontrado.")
+   with st.expander("Histórico de Dividendos", expanded=False):
+    if not dividendos.empty:
+        st.dataframe(dividendos)
+        grafico = criar_grafico_dividendos(dividendos)
+        st.plotly_chart(grafico)
+    else:
+        st.write("Nenhum dividendo encontrado.")
+
 
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
