@@ -224,6 +224,7 @@ info_acao, ticker = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
 
 # Pegar e exibir o histórico de dividendos
+@st.cache
 dividendos = ticker.dividends
 
 # Exibir as informações da empresa e o histórico de dividendos
