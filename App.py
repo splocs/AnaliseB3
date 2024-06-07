@@ -229,3 +229,8 @@ dividendos = ticker.dividends
 
 # Exibir as informações da empresa e o histórico de dividendos
 exibir_info_empresa(info_acao, dividendos)
+
+info = acao.dividends
+
+# Exibir as informações
+print("Dividendos: " + str(info))
