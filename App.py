@@ -56,7 +56,10 @@ def pegar_dados_acoes():
     return pd.read_csv(path, delimiter=';')
 
 # Remova o decorador
-
+def pegar_valores_online(sigla_acao):
+    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM, progress=False)
+    df.reset_index(inplace=True)
+    return df
 
 def pegar_valores_online_periodo_definido(sigla_acao, data_inicio, data_fim):
     df = yf.download(sigla_acao, data_inicio, data_fim, progress=False)
@@ -197,14 +200,6 @@ def exibir_info_empresa(info, dividendos):
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
-
-# Definindo as datas de início e fim
-DATA_INICIO = '2017-01-01'
-DATA_FIM = date.today().strftime('%Y-%m-%d')
-
-# Chamando a função para obter os valores online sem cache e com período definido
-df = pegar_valores_online_periodo_definido(sigla_acao_escolhida, DATA_INICIO, DATA_FIM)
-
 
 # Logo
 logo_path = "logo.png"
