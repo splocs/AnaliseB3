@@ -132,6 +132,7 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Número de Ações mantidas por insiders:** {info.get('impliedSharesOutstanding', 'N/A')}")
    
     st.markdown("#### Dividendos") 
+    st.write(f"**Dividendos:** {info.get('dividends', 'N/A')}")
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
     st.write(f"**Data do ex dividendos:** {info.get('exDividendDate', 'N/A')}")
