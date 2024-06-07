@@ -4,6 +4,7 @@ import yfinance as yf
 from PIL import Image
 from datetime import date
 import plotly.express as px
+import logging
 
 # Configurando a largura da página
 st.set_page_config(
@@ -18,36 +19,36 @@ st.set_page_config(
     }
 )
 
+logging.basicConfig(level=logging.INFO)
+
+@st.cache_data
 def criar_grafico_dividendos(dividendos):
     fig = px.bar(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", labels={'index': 'Data', 'Dividends': 'Dividendos'}, color_discrete_sequence=['blue'])
     return fig
 
-
-
-# Função para formatar a data
+@st.cache_data
 def formatar_data(data):
     if data is not None:
         return pd.to_datetime(data, unit='s').strftime('%d-%m-%Y')
     return 'N/A'
 
-# Função para pegar os dados das ações
+@st.cache_data
 def pegar_dados_acoes():
     path = 'https://raw.githubusercontent.com/splocs/meu-repositorio/main/acoes.csv'
     return pd.read_csv(path, delimiter=';')
 
-# Função para pegar os valores online
+@st.cache_data
 def pegar_valores_online(sigla_acao):
     df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM, progress=False)
     df.reset_index(inplace=True)
     return df
 
-# Função para pegar as informações da empresa
+@st.cache_data
 def pegar_info_empresa(sigla_acao):
     ticker = yf.Ticker(sigla_acao)
     info = ticker.info
     return info, ticker
 
-# Função para exibir informações da empresa
 def exibir_info_empresa(info, dividendos):
     st.write(f"{info.get('shortName', 'N/A')}") 
     st.write(f"**Nome completo:** {info.get('longName', 'N/A')}")
@@ -105,7 +106,7 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Percentual mantido por insiders:** {info.get('heldPercentInsiders', 'N/A')}")
     st.write(f"**Percentual mantido por instituições:** {info.get('heldPercentInstitutions', 'N/A')}")
     st.write(f"**Número de Ações mantidas por insiders:** {info.get('impliedSharesOutstanding', 'N/A')}")
-   
+
     st.markdown("#### Dividendos") 
     st.write(f"**Taxa de dividendos:** {info.get('dividendRate', 'N/A')}")
     st.write(f"**Dividend Yield:** {info.get('dividendYield', 'N/A')}")
@@ -113,7 +114,6 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Índice de pagamento:** {info.get('payoutRatio', 'N/A')}")
     st.write(f"**Rendimento médio de dividendos últimos cinco anos:** {info.get('fiveYearAvgDividendYield', 'N/A')}")
 
-  
     # Exibindo o DataFrame de dividendos dentro de um expander
     with st.expander("Histórico de Dividendos", expanded=False):
         if not dividendos.empty:
@@ -122,8 +122,6 @@ def exibir_info_empresa(info, dividendos):
             st.plotly_chart(grafico)
         else:
             st.write("Nenhum dividendo encontrado.")
-
-            
 
     st.write(f"**Beta:** {info.get('beta', 'N/A')}")
     st.write(f"**P/L (Preço/Lucro) em retrospecto:** {info.get('trailingPE', 'N/A')}")
@@ -137,7 +135,6 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"**Fim do próximo ano fiscal:** {info.get('nextFiscalYearEnd', 'N/A')}")
     st.write(f"**Trimestre mais recente:** {info.get('mostRecentQuarter', 'N/A')}")
     st.write(f"**Crescimento trimestral dos lucros:** {info.get('earningsQuarterlyGrowth', 'N/A')}")
-    st.write(f"**Lucro líquido comum:** {info.get('netIncomeToCommon', 'N/A')}")
     st.write(f"**EPS (Lucro por ação) em retrospecto:** {info.get('trailingEps', 'N/A')}")
     st.write(f"**EPS (Lucro por ação) projetado:** {info.get('forwardEps', 'N/A')}")
     st.write(f"**Último fator de divisão:** {info.get('lastSplitFactor', 'N/A')}")
