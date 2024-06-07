@@ -220,6 +220,7 @@ sigla_acao_escolhida = df_acao.iloc[0]['sigla_acao']
 sigla_acao_escolhida += '.SA'
 
 # Pegar e exibir as informações da empresa
+@st.cache
 info_acao, ticker = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
 
