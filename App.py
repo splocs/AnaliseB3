@@ -227,12 +227,9 @@ st.header(f"Informações da ação: {nome_acao_escolhida}")
 
 # Pegar e exibir o histórico de dividendos
 
-dividendos = ticker.dividends
-
-# Exibir as informações da empresa e o histórico de dividendos
-exibir_info_empresa(info_acao, dividendos)
+symbol = 'hbor3.sa'
 
 # Obtenha os últimos dividendos
 dividends = stock_info.get_dividends(symbol)
 
-print("Últimos dividendos para", hbor3.sa, ":", dividends)
+print("Últimos dividendos para", symbol, ":", dividends)
