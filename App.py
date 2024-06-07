@@ -55,7 +55,7 @@ def pegar_dados_acoes():
     path = 'https://raw.githubusercontent.com/splocs/meu-repositorio/main/acoes.csv'
     return pd.read_csv(path, delimiter=';')
 
-# Remova o decorador @st.cache
+# Remova o decorador
 def pegar_valores_online(sigla_acao):
     df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM, progress=False)
     df.reset_index(inplace=True)
