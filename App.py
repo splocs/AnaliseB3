@@ -22,15 +22,24 @@ def criar_grafico_dividendos(dividendos):
     fig = px.line(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", 
                   labels={'index': '', 'Dividends': ''}, color_discrete_sequence=['blue'])
 
+    # Adiciona pontos nos dias de pagamento de dividendos
+    fig.add_trace(go.Scatter(
+        x=dividendos.index,
+        y=dividendos['Dividends'],
+        mode='markers',
+        marker=dict(color='red', size=8, symbol='circle'),
+        showlegend=False
+    ))
+
     fig.update_layout(
+        xaxis=dict(fixedrange=True),  # Desabilita o zoom no eixo x
+        yaxis=dict(fixedrange=True),  # Desabilita o zoom no eixo y
         showlegend=False,  # Remove a legenda
         xaxis_title=None,  # Remove o título do eixo x
         yaxis_title=None,  # Remove o título do eixo y
         title_x=0.5,  # Centraliza o título
         title_y=0.9,  # Ajusta a posição do título no eixo y
-        margin=dict(l=20, r=20, t=50, b=20),  # Ajusta as margens
-        xaxis=dict(fixedrange=True),  # Desabilita o zoom no eixo x
-        yaxis=dict(fixedrange=True)  # Desabilita o zoom no eixo y
+        margin=dict(l=20, r=20, t=50, b=20)  # Ajusta as margens
     )
     
     # Remove o menu do Plotly
