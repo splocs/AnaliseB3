@@ -56,8 +56,10 @@ def pegar_dados_acoes():
     return pd.read_csv(path, delimiter=';')
 
 # Remova o decorador
-def pegar_valores_online(sigla_acao):
-    df = yf.download(sigla_acao, DATA_INICIO, DATA_FIM, progress=False)
+
+
+def pegar_valores_online_periodo_definido(sigla_acao, data_inicio, data_fim):
+    df = yf.download(sigla_acao, data_inicio, data_fim, progress=False)
     df.reset_index(inplace=True)
     return df
 
