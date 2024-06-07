@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 def criar_grafico_dividendos(dividendos):
-    fig = px.line(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", 
+    fig = px.bar(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", 
                   labels={'index': '', 'Dividends': ''}, color_discrete_sequence=['blue'])
                   
 
