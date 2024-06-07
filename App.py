@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 def criar_grafico_dividendos(dividendos):
-    fig = px.bar(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", 
+    fig = px.line(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", 
                   labels={'index': '', 'Dividends': ''}, color_discrete_sequence=['blue'])
                   
 
@@ -138,7 +138,7 @@ def exibir_info_empresa(info, dividendos):
     # Exibindo o DataFrame de dividendos dentro de um expander
     with st.expander("Histórico de Dividendos", expanded=False):
         if not dividendos.empty:
-            st.write(dividendos)
+            st.dataframe(dividendos)
             grafico = criar_grafico_dividendos(dividendos)
             st.plotly_chart(grafico)
         else:
@@ -193,8 +193,6 @@ def exibir_info_empresa(info, dividendos):
     st.write(f"Margens EBITDA: {info.get('ebitdaMargins', 'N/A')}")
     st.write(f"Margens operacionais: {info.get('operatingMargins', 'N/A')}")
 
-    
-
 # Definindo data de início e fim
 DATA_INICIO = '2017-01-01'
 DATA_FIM = date.today().strftime('%Y-%m-%d')
@@ -226,4 +224,7 @@ info_acao, ticker = pegar_info_empresa(sigla_acao_escolhida)
 st.header(f"Informações da ação: {nome_acao_escolhida}")
 
 # Pegar e exibir o histórico de dividendos
+dividendos = ticker.dividends
 
+# Exibir as informações da empresa e o histórico de dividendos
+exibir_info_empresa(info_acao, dividendos)
