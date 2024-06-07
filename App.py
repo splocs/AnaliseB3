@@ -18,8 +18,46 @@ st.set_page_config(
     }
 )
 
+#grafico dividendos
 def criar_grafico_dividendos(dividendos):
-    fig = px.bar(dividendos, x=dividendos.index, y='Dividends', title="Evolução dos Dividendos", labels={'index': 'Data', 'Dividends': 'Dividendos'}, color_discrete_sequence=['blue'])
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=dividendos.index,
+        y=dividendos.values,
+        mode='lines+markers',
+        line=dict(color='blue', width=2),
+        marker=dict(color='blue', size=6)
+    ))
+    
+    fig.update_layout(
+        title="Evolução dos Dividendos",
+        xaxis_title='',
+        yaxis_title='',
+        showlegend=False,
+        plot_bgcolor='white'
+    )
+    
+    fig.update_xaxes(
+        rangeslider_visible=True,
+        fixedrange=False,
+        showgrid=True,
+        zeroline=True
+    )
+    
+    fig.update_yaxes(
+        fixedrange=True,
+        showgrid=True,
+        zeroline=True
+    )
+    
+    fig.update_layout(
+        margin=dict(l=10, r=10, t=40, b=10),
+        xaxis=dict(showticklabels=False),
+        yaxis=dict(showticklabels=False),
+        dragmode='pan',
+        modebar_remove=['zoom', 'zoomIn', 'zoomOut', 'autoScale', 'resetScale']
+    )
+
     return fig
 
 
